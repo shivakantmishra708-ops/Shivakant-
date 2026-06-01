@@ -83,8 +83,12 @@ function calculateResult() {
     // इनपुट फील्ड्स से वैल्यू (नंबर) निकालना
     let name = document.getElementById("name").value.trim();
     let math = Number(document.getElementById("math").value);
-    let science = Number(document.getElementById("science").value);
+    let hindi = Number(document.getElementById("science").value);
     let english = Number(document.getElementById("english").value);
+    let Yoga = Number(document.getElementById("science").value);
+    let chemistry = Number(document.getElementById("science").value);
+    let physics = Number(document.getElementById("science").value);
+    let biology = Number(document.getElementById("science").value);
     let outputDiv = document.getElementById("output");
 
     // अगर नाम खाली है तो अलर्ट दिखाना
@@ -94,8 +98,8 @@ function calculateResult() {
     }
 
     // कुल नंबर और प्रतिशत (Percentage) की गणना
-    let total = math + science + english;
-    let percentage = total / 3;
+    let total = math + hindi + english + yoga + chemistry + physics + biology;
+    let percentage = total / 7;
     let grade = "";
 
     // प्रतिशत के आधार पर ग्रेड तय करना
@@ -116,7 +120,7 @@ function calculateResult() {
     outputDiv.innerHTML = `
         <strong>नतीजा (Result):</strong><br><br>
         👤 छात्र का नाम: ${name}<br>
-        📊 कुल प्राप्तांक: ${total} / 300<br>
+        📊 कुल प्राप्तांक: ${total} / 700<br>
         📈 प्रतिशत: ${percentage.toFixed(2)}%<br>
         🏅 ग्रेड: ${grade}
     `;
