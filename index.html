@@ -14,12 +14,36 @@
         }
 
         body {
-            background-color: #ffffff;
-            color: #111111;
+            background-color: #010409;
+            color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* --- 1. PREMIUM LOGIN PAGE WITH GLOWING BLUE MOON & ELON MUSK INFOGRAPHICS --- */
+        /* --- BACKGROUND BLUE MOON WATERMARK SYSTEM --- */
+        .blue-moon-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle at 30% 30%, #a2d2ff 0%, #4a90e2 50%, #1a3a5f 100%);
+            border-radius: 50%;
+            opacity: 0.15;
+            filter: blur(20px);
+            box-shadow: 0 0 100px #4a90e2, 0 0 200px rgba(74, 144, 226, 0.3);
+            pointer-events: none;
+            z-index: 1;
+            animation: pulseGlow 5s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.12; }
+            100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.22; }
+        }
+
+        /* --- 1. PREMIUM LOGIN PAGE --- */
         .moon-login-page {
             position: fixed;
             top: 0;
@@ -27,41 +51,16 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #010409 100%);
-            color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 50px;
             z-index: 1000;
-            overflow: hidden;
         }
 
-        /* Glowing Blue Moon Watermark */
-        .blue-moon-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle at 30% 30%, #a2d2ff 0%, #4a90e2 50%, #1a3a5f 100%);
-            border-radius: 50%;
-            opacity: 0.25;
-            filter: blur(10px);
-            box-shadow: 0 0 80px #4a90e2, 0 0 150px rgba(74, 144, 226, 0.4);
-            pointer-events: none;
-            animation: pulseGlow 4s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
-            100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.35; }
-        }
-
-        /* Elon Musk Sidebar Info */
         .elon-sidebar {
             width: 320px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             padding: 25px;
@@ -78,9 +77,6 @@
             padding-bottom: 5px;
             letter-spacing: 1px;
         }
-        .elon-sidebar ul {
-            list-style-type: none;
-        }
         .elon-sidebar ul li {
             font-size: 13.5px;
             margin-bottom: 12px;
@@ -88,21 +84,11 @@
             position: relative;
             padding-left: 20px;
             color: #e0e6ed;
+            list-style: none;
         }
-        .elon-sidebar ul li::before {
-            content: "🚀";
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
+        .elon-sidebar ul li::before { content: "🚀"; position: absolute; left: 0; top: 0; }
 
-        /* Center Main Branding */
-        .center-branding {
-            text-align: center;
-            z-index: 10;
-            flex: 1;
-            padding: 0 20px;
-        }
+        .center-branding { text-align: center; z-index: 10; flex: 1; padding: 0 20px; }
         .center-branding h1 {
             font-size: 55px;
             font-weight: 800;
@@ -111,10 +97,8 @@
             background: linear-gradient(to right, #ffffff, #54a0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(84, 160, 255, 0.3);
         }
 
-        /* Top Corner Auth Control Bar */
         .auth-bar {
             position: absolute;
             top: 25px;
@@ -136,12 +120,8 @@
             text-transform: uppercase;
             font-size: 13px;
         }
-        .auth-btn.active {
-            background: #4a90e2;
-            box-shadow: 0 0 10px #4a90e2;
-        }
+        .auth-btn.active { background: #4a90e2; box-shadow: 0 0 10px #4a90e2; }
 
-        /* Auth Boxes */
         .auth-panel {
             position: absolute;
             top: 85px;
@@ -151,14 +131,11 @@
             border: 1px solid #4a90e2;
             padding: 30px 25px;
             border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(74,144,226,0.2);
             backdrop-filter: blur(10px);
             z-index: 100;
             display: none;
         }
         .auth-panel.active { display: block; }
-        .auth-panel h3 { margin-bottom: 20px; text-transform: uppercase; font-size: 16px; color: #54a0ff; }
-        
         .box-input {
             width: 100%;
             padding: 12px;
@@ -169,8 +146,6 @@
             color: white;
             outline: none;
         }
-        .box-input:focus { border-color: #54a0ff; background: rgba(255,255,255,0.15); }
-        
         .panel-btn {
             width: 100%;
             padding: 12px;
@@ -182,96 +157,129 @@
             text-transform: uppercase;
             cursor: pointer;
         }
-        .panel-btn:hover { background: #357abd; }
         .err-label { color: #ff6b6b; font-size: 12px; margin-top: -10px; margin-bottom: 10px; display: none; }
 
 
-        /* --- 2. VIBRANT & COLORFUL INSIDE DASHBOARD SYSTEM --- */
+        /* --- 2. NEW SIDEBAR LAYOUT FOR INSIDE DASHBOARD --- */
         .dashboard-container {
-            display: none;
-            padding: 30px;
-            background: #f4f7f6;
-            min-height: 100vh;
+            display: none; /* Initially Hidden */
+            position: relative;
+            z-index: 5;
         }
 
+        /* Top Header Bar */
         .dash-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(20, 25, 35, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #1e272e;
-            color: white;
-            padding: 20px 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            padding: 0 30px;
+            z-index: 100;
         }
-        .dash-header h2 { font-weight: 700; letter-spacing: 1px; }
+        .dash-header h2 { font-weight: 700; letter-spacing: 1px; font-size: 24px; color: #54a0ff;}
         
         .logout-action {
-            padding: 10px 20px;
+            padding: 8px 18px;
             background: #ff5e57;
             color: white;
             border: none;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            transition: 0.2s;
+        }
+        .logout-action:hover { background: #ff3f34; }
+
+        /* Left Sidebar Line Layout */
+        .sidebar-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 280px;
+            height: calc(100vh - 70px);
+            background: rgba(15, 22, 36, 0.75);
+            backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 99;
         }
 
-        /* Rainbow Color Coding Tabs */
-        .color-tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        .rainbow-btn {
-            padding: 12px 20px;
+        /* Rainbow Sidebar Links */
+        .sidebar-btn {
+            width: 100%;
+            padding: 14px 18px;
             border: none;
-            color: white;
-            font-weight: bold;
+            color: #ffffff;
+            font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 13px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            opacity: 0.75;
+            font-size: 12.5px;
+            text-align: left;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid transparent;
         }
-        .rainbow-btn:hover { transform: translateY(-2px); opacity: 1; }
-        .rainbow-btn.active { opacity: 1; transform: scale(1.03); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .sidebar-btn:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.08); }
+        
+        /* Left border colors reflecting active button category */
+        .btn-student.active, .btn-student:hover { border-left-color: #5f27cd; background: rgba(95, 39, 205, 0.15); color: #9b5de5; }
+        .btn-teacher.active, .btn-teacher:hover { border-left-color: #00d2d3; background: rgba(0, 210, 211, 0.15); color: #00d2d3; }
+        .btn-t-att.active, .btn-t-att:hover { border-left-color: #ff9f43; background: rgba(255, 159, 67, 0.15); color: #ff9f43; }
+        .btn-s-att.active, .btn-s-att:hover { border-left-color: #10ac84; background: rgba(16, 172, 132, 0.15); color: #10ac84; }
+        .btn-results.active, .btn-results:hover { border-left-color: #ee5253; background: rgba(238, 82, 83, 0.15); color: #ee5253; }
+        .btn-notice.active, .btn-notice:hover { border-left-color: #c8d6e5; background: rgba(200, 214, 229, 0.15); color: #c8d6e5; }
 
-        /* Assigning colors to each tab component */
-        .btn-student { background: #341f97; } /* Deep Purple */
-        .btn-teacher { background: #01a3a4; } /* Cyan */
-        .btn-t-att { background: #ff9f43; color: #111; }  /* Vibrant Orange */
-        .btn-s-att { background: #10ac84; } /* Emerald Green */
-        .btn-results { background: #ee5253; } /* Rose Red */
-        .btn-notice { background: #222f3e; } /* Dark Slate */
+        /* Main Workspace Right Content Dynamic Area */
+        .main-workspace {
+            margin-left: 280px;
+            padding: 100px 40px 40px 40px;
+            min-height: 100vh;
+        }
 
-        /* Panel Settings */
-        .tab-view { display: none; background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        .tab-view.active { display: block; }
+        .tab-view { 
+            display: none; 
+            background: rgba(20, 30, 45, 0.6); 
+            padding: 30px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .tab-view.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .section-title {
             font-size: 22px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             padding-bottom: 8px;
-            border-bottom: 3px solid #111;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
         }
-        /* Specific borders matching tab identity */
-        #view-students .section-title { border-color: #341f97; color: #341f97; }
-        #view-teachers .section-title { border-color: #01a3a4; color: #01a3a4; }
-        #view-teacher-attendance .section-title { border-color: #ff9f43; color: #ff9f43; }
-        #view-student-attendance .section-title { border-color: #10ac84; color: #10ac84; }
-        #view-results .section-title { border-color: #ee5253; color: #ee5253; }
-        #view-notice .section-title { border-color: #222f3e; color: #222f3e; }
+        #view-students .section-title { color: #a29bfe; }
+        #view-teachers .section-title { color: #00d2d3; }
+        #view-teacher-attendance .section-title { color: #ff9f43; }
+        #view-student-attendance .section-title { color: #10ac84; }
+        #view-results .section-title { color: #ee5253; }
+        #view-notice .section-title { color: #c8d6e5; }
 
-        /* Excel Sheet Styled Table Grid */
+        /* Tables Glassmorphism Design */
         .table-scroll {
-            max-height: 600px;
+            max-height: 550px;
             overflow-y: auto;
-            border: 2px solid #ddd;
             border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         table {
             width: 100%;
@@ -281,62 +289,53 @@
             position: sticky;
             top: 0;
             color: white;
-            padding: 12px;
+            padding: 14px;
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 12px;
+            letter-spacing: 1px;
             z-index: 5;
+            background: #0f1624;
         }
-        #view-students th { background: #341f97; }
-        #view-teachers th { background: #01a3a4; }
-        #view-teacher-attendance th { background: #ff9f43; color: #111; }
-        #view-student-attendance th { background: #10ac84; }
-        #view-results th { background: #ee5253; }
-
         td {
-            padding: 8px 12px;
-            border: 1px solid #e1e8ed;
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(10, 15, 25, 0.4);
         }
         td input, td select {
             width: 100%;
-            padding: 6px;
+            padding: 8px;
             border: 1px solid transparent;
             background: transparent;
             font-size: 14px;
             outline: none;
+            color: #ffffff;
             border-radius: 4px;
         }
+        td input::placeholder { color: rgba(255,255,255,0.3); }
         td input:focus, td select:focus {
-            background: #ffffd0;
-            border-color: #aaa;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
         }
-        tr:nth-child(even) { background: #fdfdfd; }
-        tr:hover { background: #f1f2f6; }
+        tr:hover td { background: rgba(255, 255, 255, 0.03); }
 
-        /* Neon Notice Grid */
-        .grid-notice {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .color-card {
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .card-blue { background: linear-gradient(135deg, #54a0ff, #00d2d3); }
-        .card-pink { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
-        .card-yellow { background: linear-gradient(135deg, #ffff66, #ff9f43); color: #111; }
+        select option { background: #141e2d; color: white; }
+
+        /* Notice Board Grid */
+        .grid-notice { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .color-card { padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .card-blue { background: linear-gradient(135deg, rgba(84, 160, 255, 0.2), rgba(0, 210, 211, 0.1)); }
+        .card-pink { background: linear-gradient(135deg, rgba(255, 159, 243, 0.2), rgba(243, 104, 224, 0.1)); }
+        .card-yellow { background: linear-gradient(135deg, rgba(255, 255, 102, 0.15), rgba(255, 159, 67, 0.1)); }
         
         .color-card textarea {
             width: 100%;
-            height: 110px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: inherit;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 6px;
+            height: 120px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 8px;
             resize: none;
             outline: none;
         }
@@ -344,39 +343,34 @@
 </head>
 <body>
 
+    <!-- Glowing Blue Moon Background Object Shared across pages -->
+    <div class="blue-moon-watermark"></div>
+
     <!-- ============================================
-         1. LOGIN PAGE (BLUE MOON & ELON MUSK COUNTER)
+         1. LOGIN PAGE (BLUE MOON & ELON MUSK)
          ============================================ -->
     <div class="moon-login-page" id="authScreen">
-        
-        <!-- Glowing Blue Moon Watermark Behind -->
-        <div class="blue-moon-watermark"></div>
-
-        <!-- Left Column: Elon Musk Bullet Board -->
         <div class="elon-sidebar">
             <h2>Elon Musk Facts</h2>
             <ul>
                 <li><b>SpaceX Mastermind:</b> Reusable rockets banakar space travel ko sasta kiya.</li>
                 <li><b>Tesla Revolution:</b> Electric car industry ko poori duniya me establish kiya.</li>
                 <li><b>Neuralink Vision:</b> Human brain ko direct AI aur computer se jodne par kaam jari hai.</li>
-                <li><b>Multiplanetary Aim:</b> Inka sabse bada sapna insano ko Mars (mangal grah) par basana hai.</li>
-                <li><b>Work Ethic:</b> Ek samay me hafto tak 100+ ghante lagatar kaam karne ke liye jaane jaate hain.</li>
+                <li><b>Multiplanetary Aim:</b> Inka sabse bada sapna insano ko Mars par basana hai.</li>
+                <li><b>Work Ethic:</b> Ek samay me hafto tak 100+ ghante lagatar kaam karte the.</li>
             </ul>
         </div>
 
-        <!-- Center Column: Branding Header -->
         <div class="center-branding">
             <h1>Nexus Academy</h1>
             <p style="color: #a2d2ff; letter-spacing: 3px; font-size: 14px; margin-top: 5px;">NEXT-GEN EDUCATION MANAGEMENT</p>
         </div>
 
-        <!-- Right Side: Header Control Toggles -->
         <div class="auth-bar">
             <button class="auth-btn active" id="btnLogMode" onclick="switchAuthMode('login')">Login</button>
             <button class="auth-btn" id="btnRegMode" onclick="switchAuthMode('register')">Register</button>
         </div>
 
-        <!-- Floating Identity Login Box -->
         <div class="auth-panel active" id="boxLogin">
             <h3>Admin Security Login</h3>
             <input type="text" class="box-input" id="inpUser" placeholder="Username (admin)">
@@ -385,7 +379,6 @@
             <button class="panel-btn" onclick="executeLogin()">Access Control</button>
         </div>
 
-        <!-- Floating Identity Register Box -->
         <div class="auth-panel" id="boxRegister">
             <h3>New Admin Setup</h3>
             <input type="text" class="box-input" id="inpNewUser" placeholder="Choose Custom Username">
@@ -393,126 +386,127 @@
             <div class="err-label" id="lblRegErr">Please fill all credentials fields!</div>
             <button class="panel-btn" onclick="executeRegister()">Register System</button>
         </div>
-
     </div>
 
 
     <!-- ============================================
-         2. CORE INSIDE DASHBOARD (VIBRANT & COLORFUL)
+         2. CORE SIDEBAR INTEGRATED DASHBOARD 
          ============================================ -->
     <div class="dashboard-container" id="mainDashboard">
         
-        <!-- Inside Panel Brand Top Header Bar -->
+        <!-- Top Fixed Bar -->
         <div class="dash-header">
             <h2>🌟 Nexus Systems Portal</h2>
             <button class="logout-action" onclick="executeLogout()">Disconnect Portal</button>
         </div>
 
-        <!-- Rainbow Styled Switching Buttons Grid -->
-        <div class="color-tabs">
-            <button class="rainbow-btn btn-student active" onclick="activatePanel(event, 'view-students')">Students Register (25)</button>
-            <button class="rainbow-btn btn-teacher" onclick="activatePanel(event, 'view-teachers')">Teachers Directory (25)</button>
-            <button class="rainbow-btn btn-t-att" onclick="activatePanel(event, 'view-teacher-attendance')">📢 Teacher Attendance (25)</button>
-            <button class="rainbow-btn btn-s-att" onclick="activatePanel(event, 'view-student-attendance')">Student Attendance</button>
-            <button class="rainbow-btn btn-results" onclick="activatePanel(event, 'view-results')">Performance Grading</button>
-            <button class="rainbow-btn btn-notice" onclick="activatePanel(event, 'view-notice')">Live Billboard Notice</button>
+        <!-- NEW UPDATED SIDEBAR (LEFT LINE SE SIDEBAR ARRANGEMENT) -->
+        <div class="sidebar-menu">
+            <button class="sidebar-btn btn-student active" onclick="activatePanel(event, 'view-students')">Students Register (25)</button>
+            <button class="sidebar-btn btn-teacher" onclick="activatePanel(event, 'view-teachers')">Teachers Directory (25)</button>
+            <button class="sidebar-btn btn-t-att" onclick="activatePanel(event, 'view-teacher-attendance')">📢 Teacher Attendance</button>
+            <button class="sidebar-btn btn-s-att" onclick="activatePanel(event, 'view-student-attendance')">Student Attendance</button>
+            <button class="sidebar-btn btn-results" onclick="activatePanel(event, 'view-results')">Performance Grading</button>
+            <button class="sidebar-btn btn-notice" onclick="activatePanel(event, 'view-notice')">Live Billboard Notice</button>
         </div>
 
-        <!-- VIEW PANEL 1: STUDENTS MATRIX (25 Rows) -->
-        <div id="view-students" class="tab-view active">
-            <h3 class="section-title">Student Profile Databank</h3>
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr><th>S.No</th><th>Student Roll ID</th><th>Student Full Name</th><th>Academic Class/Standard</th></tr>
-                    </thead>
-                    <tbody id="gridStudents"></tbody>
-                </table>
-            </div>
-        </div>
+        <!-- Right Side Main Workspace Content Box -->
+        <div class="main-workspace">
 
-        <!-- VIEW PANEL 2: TEACHERS REGISTRY (25 Rows) -->
-        <div id="view-teachers" class="tab-view">
-            <h3 class="section-title">Faculty Faculty Records</h3>
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr><th>S.No</th><th>Teacher Code</th><th>Instructor Full Name</th><th>Core Allotted Subject</th></tr>
-                    </thead>
-                    <tbody id="gridTeachers"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- VIEW PANEL 3: NEW FEATURE! TEACHER ATTENDANCE (25 Rows) -->
-        <div id="view-teacher-attendance" class="tab-view">
-            <h3 class="section-title">Faculty Attendance Log</h3>
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr><th>S.No</th><th>Faculty Name</th><th>Duty Allocation</th><th>Today's Status</th></tr>
-                    </thead>
-                    <tbody id="gridTeacherAttendance"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- VIEW PANEL 4: STUDENT ATTENDANCE TRACKER -->
-        <div id="view-student-attendance" class="tab-view">
-            <h3 class="section-title">Student Ledger Attendance</h3>
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr><th>S.No</th><th>Student Identity Name</th><th>Total Compiled Days</th><th>Present Computations</th></tr>
-                    </thead>
-                    <tbody id="gridStudentAttendance"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- VIEW PANEL 5: EXAM MARKS GRADING SHEET -->
-        <div id="view-results" class="tab-view">
-            <h3 class="section-title">Term Examination Scoresheet</h3>
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr><th>S.No</th><th>Pupil Name</th><th>Mathematics</th><th>Science Domain</th><th>Languages</th><th>Final Grade</th></tr>
-                    </thead>
-                    <tbody id="gridResults"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- VIEW PANEL 6: DIGITAL NOTICE BILLBOARD -->
-        <div id="view-notice" class="tab-view">
-            <h3 class="section-title">Central Bulletin Information</h3>
-            <div class="grid-notice">
-                <div class="color-card card-blue">
-                    <h3>🚀 Academic Notice</h3>
-                    <textarea placeholder="Write institutional circulars here..."></textarea>
-                </div>
-                <div class="color-card card-pink">
-                    <h3>⚡ Examination Wing</h3>
-                    <textarea placeholder="Write curriculum scheduling notes here..."></textarea>
-                </div>
-                <div class="color-card card-yellow">
-                    <h3>💡 Faculty Common Room</h3>
-                    <textarea placeholder="Allot special staff notifications or proxy schedules..."></textarea>
+            <!-- PANEL 1: STUDENTS MATRIX (25 Rows) -->
+            <div id="view-students" class="tab-view active">
+                <h3 class="section-title">Student Profile Databank</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>S.No</th><th>Student Roll ID</th><th>Student Full Name</th><th>Academic Class/Standard</th></tr>
+                        </thead>
+                        <tbody id="gridStudents"></tbody>
+                    </table>
                 </div>
             </div>
-        </div>
 
+            <!-- PANEL 2: TEACHERS REGISTRY (25 Rows) -->
+            <div id="view-teachers" class="tab-view">
+                <h3 class="section-title">Faculty Records</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>S.No</th><th>Teacher Code</th><th>Instructor Full Name</th><th>Core Allotted Subject</th></tr>
+                        </thead>
+                        <tbody id="gridTeachers"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 3: TEACHER ATTENDANCE (25 Rows) -->
+            <div id="view-teacher-attendance" class="tab-view">
+                <h3 class="section-title">Faculty Attendance Log</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>S.No</th><th>Faculty Name</th><th>Duty Allocation</th><th>Today's Status</th></tr>
+                        </thead>
+                        <tbody id="gridTeacherAttendance"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 4: STUDENT ATTENDANCE -->
+            <div id="view-student-attendance" class="tab-view">
+                <h3 class="section-title">Student Ledger Attendance</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>S.No</th><th>Student Identity Name</th><th>Total Compiled Days</th><th>Present Computations</th></tr>
+                        </thead>
+                        <tbody id="gridStudentAttendance"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 5: EXAM MARKS GRADING SHEET -->
+            <div id="view-results" class="tab-view">
+                <h3 class="section-title">Term Examination Scoresheet</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>S.No</th><th>Pupil Name</th><th>Mathematics</th><th>Science Domain</th><th>Languages</th><th>Final Grade</th></tr>
+                        </thead>
+                        <tbody id="gridResults"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 6: NOTICE BILLBOARD -->
+            <div id="view-notice" class="tab-view">
+                <h3 class="section-title">Central Bulletin Information</h3>
+                <div class="grid-notice">
+                    <div class="color-card card-blue">
+                        <h3 style="color: #54a0ff;">🚀 Academic Notice</h3>
+                        <textarea placeholder="Write institutional circulars here..."></textarea>
+                    </div>
+                    <div class="color-card card-pink">
+                        <h3 style="color: #ff9ff3;">⚡ Examination Wing</h3>
+                        <textarea placeholder="Write curriculum scheduling notes here..."></textarea>
+                    </div>
+                    <div class="color-card card-yellow">
+                        <h3 style="color: #ff9f43;">💡 Faculty Common Room</h3>
+                        <textarea placeholder="Allot special staff notifications..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- ============================================
-         3. INTELLIGENT DRIVER ENGINE (JAVASCRIPT)
+         3. JAVASCRIPT LOGIC DRIVER
          ============================================ -->
     <script>
-        // System Credentials Memory Store
         let systemAdminUser = "admin";
         let systemAdminPass = "admin123";
 
-        // Navigation Controller for Access Screen
         function switchAuthMode(targetMode) {
             const btnLogMode = document.getElementById('btnLogMode');
             const btnRegMode = document.getElementById('btnRegMode');
@@ -520,80 +514,60 @@
             const boxRegister = document.getElementById('boxRegister');
 
             if(targetMode === 'login') {
-                btnLogMode.classList.add('active');
-                btnRegMode.classList.remove('active');
-                boxLogin.classList.add('active');
-                boxRegister.classList.remove('active');
+                btnLogMode.className = 'auth-btn active';
+                btnRegMode.className = 'auth-btn';
+                boxLogin.className = 'auth-panel active';
+                boxRegister.className = 'auth-panel';
             } else {
-                btnRegMode.classList.add('active');
-                btnLogMode.classList.remove('active');
-                boxRegister.classList.add('active');
-                boxLogin.classList.remove('active');
+                btnRegMode.className = 'auth-btn active';
+                btnLogMode.className = 'auth-btn';
+                boxRegister.className = 'auth-panel active';
+                boxLogin.className = 'auth-panel';
             }
         }
 
-        // Action Registration Engine
         function executeRegister() {
             const userVal = document.getElementById('inpNewUser').value.trim();
             const passVal = document.getElementById('inpNewPass').value.trim();
-            const lblRegErr = document.getElementById('lblRegErr');
-
             if(!userVal || !passVal) {
-                lblRegErr.style.display = 'block';
+                document.getElementById('lblRegErr').style.display = 'block';
                 return;
             }
-
             systemAdminUser = userVal;
             systemAdminPass = passVal;
-            alert("System Admin Successfully Registered! Proceeding to Login Interface.");
+            alert("Admin Registered Successfully!");
             switchAuthMode('login');
-            document.getElementById('inpUser').value = userVal;
         }
 
-        // Access Grant Engine
         function executeLogin() {
             const userVal = document.getElementById('inpUser').value.trim();
-            const passVal = document.getElementById('inpUser').value.trim();
             const passVerification = document.getElementById('inpPass').value.trim();
-            const lblLogErr = document.getElementById('lblLogErr');
-
             if(userVal === systemAdminUser && passVerification === systemAdminPass) {
                 document.getElementById('authScreen').style.display = 'none';
                 document.getElementById('mainDashboard').style.display = 'block';
             } else {
-                lblLogErr.style.display = 'block';
+                document.getElementById('lblLogErr').style.display = 'block';
             }
         }
 
-        // Disconnection Action
         function executeLogout() {
-            document.getElementById('inpUser').value = "";
-            document.getElementById('inpPass').value = "";
-            document.getElementById('lblLogErr').style.display = 'none';
             document.getElementById('authScreen').style.display = 'flex';
             document.getElementById('mainDashboard').style.display = 'none';
         }
 
-        // Panel Switch Routing Core
         function activatePanel(event, targetPanelId) {
             const views = document.getElementsByClassName('tab-view');
-            for(let i = 0; i < views.length; i++) {
-                views[i].classList.remove('active');
-            }
+            for(let i = 0; i < views.length; i++) views[i].classList.remove('active');
 
-            const tabButtons = document.getElementsByClassName('rainbow-btn');
-            for(let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
+            const tabButtons = document.getElementsByClassName('sidebar-btn');
+            for(let i = 0; i < tabButtons.length; i++) tabButtons[i].classList.remove('active');
 
             document.getElementById(targetPanelId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        // INITIALIZATION AND GENERATION ENGINE FOR 25 INTERACTIVE ROW GRID
         window.onload = function() {
             const requiredLimit = 25;
-
             const gridStudents = document.getElementById('gridStudents');
             const gridTeachers = document.getElementById('gridTeachers');
             const gridTeacherAttendance = document.getElementById('gridTeacherAttendance');
@@ -601,58 +575,11 @@
             const gridResults = document.getElementById('gridResults');
 
             for (let i = 1; i <= requiredLimit; i++) {
-                // Populate 25 Student Configuration Rows
-                gridStudents.innerHTML += `
-                    <tr>
-                        <td><b>${i}</b></td>
-                        <td><input type="text" placeholder="NX-${202600 + i}"></td>
-                        <td><input type="text" placeholder="Enter Student Name"></td>
-                        <td><input type="text" placeholder="Class / Sec"></td>
-                    </tr>`;
-
-                // Populate 25 Teacher Profiles Rows
-                gridTeachers.innerHTML += `
-                    <tr>
-                        <td><b>${i}</b></td>
-                        <td><input type="text" placeholder="FAC-${900 + i}"></td>
-                        <td><input type="text" placeholder="Enter Teacher Name"></td>
-                        <td><input type="text" placeholder="Allotted Subject"></td>
-                    </tr>`;
-
-                // Populate 25 Teacher Attendance Rows (New Feature!)
-                gridTeacherAttendance.innerHTML += `
-                    <tr>
-                        <td><b>${i}</b></td>
-                        <td><input type="text" placeholder="Teacher Name"></td>
-                        <td><input type="text" placeholder="E.g., Senior / Junior Wing"></td>
-                        <td>
-                            <select>
-                                <option value="present">🟢 Present</option>
-                                <option value="absent">🔴 Absent</option>
-                                <option value="leave">🟡 On Leave</option>
-                            </select>
-                        </td>
-                    </tr>`;
-
-                // Populate 25 Student Attendance Configuration Grid
-                gridStudentAttendance.innerHTML += `
-                    <tr>
-                        <td><b>${i}</b></td>
-                        <td><input type="text" placeholder="Student Name"></td>
-                        <td><input type="number" placeholder="200"></td>
-                        <td><input type="number" placeholder="180"></td>
-                    </tr>`;
-
-                // Populate 25 Exam Performance Slots
-                gridResults.innerHTML += `
-                    <tr>
-                        <td><b>${i}</b></td>
-                        <td><input type="text" placeholder="Student Name"></td>
-                        <td><input type="number" placeholder="Maths"></td>
-                        <td><input type="number" placeholder="Science"></td>
-                        <td><input type="number" placeholder="Language"></td>
-                        <td><input type="text" placeholder="Grade"></td>
-                    </tr>`;
+                gridStudents.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="NX-2026${String(i).padStart(2, '0')}"></td><td><input type="text" placeholder="Enter Student Name"></td><td><input type="text" placeholder="Class / Sec"></td></tr>`;
+                gridTeachers.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="FAC-9${String(i).padStart(2, '0')}"></td><td><input type="text" placeholder="Enter Teacher Name"></td><td><input type="text" placeholder="Allotted Subject"></td></tr>`;
+                gridTeacherAttendance.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="Teacher Name"></td><td><input type="text" placeholder="Senior/Junior Wing"></td><td><select><option value="p">🟢 Present</option><option value="a">🔴 Absent</option><option value="l">🟡 On Leave</option></select></td></tr>`;
+                gridStudentAttendance.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="Student Name"></td><td><input type="number" placeholder="200"></td><td><input type="number" placeholder="180"></td></tr>`;
+                gridResults.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="Student Name"></td><td><input type="number" placeholder="Maths"></td><td><input type="number" placeholder="Science"></td><td><input type="number" placeholder="Language"></td><td><input type="text" placeholder="Grade"></td></tr>`;
             }
         };
     </script>
