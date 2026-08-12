@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Styled School Management System - Advanced</title>
+    <title>AI Styled School Management System - Sun Watermark Theme</title>
     <style>
         /* Global Reset */
         * {
@@ -20,32 +20,75 @@
             overflow-x: hidden;
         }
 
-        /* --- 1. AI STYLE FULL PAGE LOGIN BACKGROUND --- */
+        /* --- 1. GLOWING SUN WATERMARK BACKGROUND LOGIN PAGE --- */
         .ai-login-page {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #ffffff;
-            background-image: 
-                radial-gradient(#000000 1.5px, transparent 1.5px), 
-                radial-gradient(#000000 1.5px, transparent 1.5px),
-                linear-gradient(to right, #f0f0f0 2px, transparent 2px),
-                linear-gradient(to bottom, #f0f0f0 2px, transparent 2px);
-            background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
-            background-position: 0 0, 20px 20px, 0 0, 0 0;
+            background-color: #0d0d11;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            overflow: hidden;
         }
 
+        /* Glowing Sun Effect created using CSS */
+        .ai-login-page::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            /* Bright Radiant Sun Gradient */
+            background: radial-gradient(circle, 
+                        rgba(255, 235, 170, 0.9) 0%, 
+                        rgba(255, 170, 0, 0.6) 30%, 
+                        rgba(255, 90, 0, 0.25) 55%, 
+                        rgba(13, 13, 17, 0) 70%);
+            animation: sunPulse 4s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Sun Rays / Aura Overlay */
+        .ai-login-page::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 200, 80, 0.15) 0%, rgba(10, 10, 15, 0.85) 75%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Sun Glow Pulse Animation */
+        @keyframes sunPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.95);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        /* Center Branding Text styling over Glowing Sun */
         .ai-brand-title {
             text-align: center;
             z-index: 10;
             pointer-events: none;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 2px 2px 10px rgba(0, 0, 0, 0.9);
         }
         .ai-brand-title h1 {
             font-size: 75px;
@@ -53,13 +96,15 @@
             letter-spacing: -2px;
             text-transform: uppercase;
             line-height: 0.9;
+            color: #ffffff;
         }
         .ai-brand-title p {
             font-size: 18px;
             letter-spacing: 6px;
             text-transform: uppercase;
-            margin-top: 10px;
+            margin-top: 15px;
             font-weight: 600;
+            color: #fff3c4;
         }
 
         .top-auth-bar {
@@ -94,7 +139,7 @@
             top: 90px;
             right: 30px;
             width: 320px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.96);
             border: 3px solid #000000;
             padding: 25px;
             box-shadow: 6px 6px 0px #000000;
@@ -120,6 +165,7 @@
             border: 2px solid #000000;
             font-size: 14px;
             outline: none;
+            background: #ffffff;
         }
         .submit-btn {
             width: 100%;
@@ -168,7 +214,6 @@
             letter-spacing: 1px;
         }
 
-        /* Top Action Tools (Search & Utilities) */
         .top-tools-bar {
             display: flex;
             align-items: center;
@@ -384,7 +429,6 @@
             </div>
         </div>
 
-        <!-- Top Tools: Search & Export -->
         <div class="top-tools-bar">
             <div class="search-box-container">
                 <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Search student name, roll number, class, or subject..." onkeyup="filterTables()">
@@ -599,12 +643,9 @@
             }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
-            
-            // Re-apply filter when switching tabs
             filterTables();
         }
 
-        /* --- FEATURE 1: DYNAMIC LIVE SEARCH --- */
         function filterTables() {
             const query = document.getElementById('globalSearch').value.toLowerCase().trim();
             const activePanel = document.querySelector('.tab-panel.active');
@@ -615,14 +656,12 @@
                 const inputs = row.querySelectorAll('input');
                 let match = false;
                 
-                // Check all input values in row
                 inputs.forEach(input => {
                     if (input.value.toLowerCase().includes(query)) {
                         match = true;
                     }
                 });
 
-                // Also check static text content (e.g., S.No column)
                 if (row.textContent.toLowerCase().includes(query)) {
                     match = true;
                 }
@@ -631,30 +670,25 @@
             });
         }
 
-        /* --- FEATURE 2: EXPORT TABLE DATA TO EXCEL (.CSV) --- */
         function exportTableToCSV(tableId, filename) {
             const table = document.getElementById(tableId);
             if (!table) return;
 
             let csv = [];
-            
-            // Extract headers
             const headers = [];
             table.querySelectorAll('th').forEach(th => {
                 headers.push(`"${th.innerText.trim()}"`);
             });
             csv.push(headers.join(','));
 
-            // Extract row data (reading from inputs correctly)
             table.querySelectorAll('tbody tr').forEach(row => {
-                // Export only visible rows (respecting search filter)
                 if(row.style.display === 'none') return;
 
                 const rowData = [];
                 row.querySelectorAll('td').forEach(td => {
                     const input = td.querySelector('input');
                     let val = input ? input.value : td.innerText.trim();
-                    val = val.replace(/"/g, '""'); // Escape inner double quotes
+                    val = val.replace(/"/g, '""');
                     rowData.push(`"${val}"`);
                 });
                 csv.push(rowData.join(','));
@@ -665,7 +699,6 @@
                 return;
             }
 
-            // Create Blob and trigger download
             const csvBlob = new Blob(['\ufeff' + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             const url = URL.createObjectURL(csvBlob);
@@ -678,7 +711,6 @@
             document.body.removeChild(link);
         }
 
-        /* --- Dynamic Auto Calculations --- */
         function calculateFee(row) {
             const total = parseFloat(document.getElementById(`fee_total_${row}`).value) || 0;
             const paid = parseFloat(document.getElementById(`fee_paid_${row}`).value) || 0;
@@ -738,7 +770,6 @@
             saveAllData();
         }
 
-        /* --- LocalStorage Data Persistence --- */
         function saveAllData() {
             const data = {};
             document.querySelectorAll('.persist-input').forEach(input => {
@@ -764,7 +795,6 @@
             }
         }
 
-        /* --- Initialization --- */
         window.onload = function() {
             const totalRows = 15;
             
@@ -821,7 +851,6 @@
                     </tr>`;
             }
 
-            // Auto-save event listener
             document.addEventListener('input', function(e) {
                 if(e.target.classList.contains('persist-input')) {
                     saveAllData();
