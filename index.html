@@ -3,339 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic School Dashboard & Moon Auth</title>
+    <title>AI Styled School Management System - Advanced</title>
     <style>
         /* Global Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #010409;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #000000;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND BLUE MOON WATERMARK SYSTEM --- */
-        .blue-moon-watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle at 30% 30%, #a2d2ff 0%, #4a90e2 50%, #1a3a5f 100%);
-            border-radius: 50%;
-            opacity: 0.15;
-            filter: blur(20px);
-            box-shadow: 0 0 100px #4a90e2, 0 0 200px rgba(74, 144, 226, 0.3);
-            pointer-events: none;
-            z-index: 1;
-            animation: pulseGlow 5s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.12; }
-            100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.22; }
-        }
-
-        /* --- 1. PREMIUM LOGIN PAGE --- */
-        .moon-login-page {
+        /* --- 1. AI STYLE FULL PAGE LOGIN BACKGROUND --- */
+        .ai-login-page {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #010409 100%);
+            background: #ffffff;
+            background-image: 
+                radial-gradient(#000000 1.5px, transparent 1.5px), 
+                radial-gradient(#000000 1.5px, transparent 1.5px),
+                linear-gradient(to right, #f0f0f0 2px, transparent 2px),
+                linear-gradient(to bottom, #f0f0f0 2px, transparent 2px);
+            background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+            background-position: 0 0, 20px 20px, 0 0, 0 0;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 0 50px;
             z-index: 1000;
         }
 
-        .elon-sidebar {
-            width: 320px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 25px;
-            border-radius: 12px;
+        .ai-brand-title {
+            text-align: center;
             z-index: 10;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            pointer-events: none;
         }
-        .elon-sidebar h2 {
-            font-size: 20px;
-            color: #54a0ff;
-            margin-bottom: 15px;
+        .ai-brand-title h1 {
+            font-size: 75px;
+            font-weight: 900;
+            letter-spacing: -2px;
             text-transform: uppercase;
-            border-bottom: 2px solid #54a0ff;
-            padding-bottom: 5px;
-            letter-spacing: 1px;
+            line-height: 0.9;
         }
-        .elon-sidebar ul li {
-            font-size: 13.5px;
-            margin-bottom: 12px;
-            line-height: 1.5;
-            position: relative;
-            padding-left: 20px;
-            color: #e0e6ed;
-            list-style: none;
-        }
-        .elon-sidebar ul li::before { content: "🚀"; position: absolute; left: 0; top: 0; }
-
-        .center-branding { text-align: center; z-index: 10; flex: 1; padding: 0 20px; }
-        .center-branding h1 {
-            font-size: 55px;
-            font-weight: 800;
+        .ai-brand-title p {
+            font-size: 18px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #ffffff, #54a0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-top: 10px;
+            font-weight: 600;
         }
 
-        .auth-bar {
+        .top-auth-bar {
             position: absolute;
             top: 25px;
-            right: 40px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 6px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            background: #ffffff;
+            padding: 8px;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
             z-index: 100;
         }
-        .auth-btn {
-            padding: 8px 22px;
+
+        .auth-toggle-btn {
+            padding: 8px 20px;
             border: none;
             background: none;
-            color: #ffffff;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 20px;
             text-transform: uppercase;
-            font-size: 13px;
         }
-        .auth-btn.active { background: #4a90e2; box-shadow: 0 0 10px #4a90e2; }
+        .auth-toggle-btn.active {
+            background: #000000;
+            color: #ffffff;
+        }
 
-        .auth-panel {
+        .auth-box {
             position: absolute;
-            top: 85px;
-            right: 40px;
+            top: 90px;
+            right: 30px;
             width: 320px;
-            background: rgba(10, 25, 47, 0.85);
-            border: 1px solid #4a90e2;
-            padding: 30px 25px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
+            background: #ffffff;
+            border: 3px solid #000000;
+            padding: 25px;
+            box-shadow: 6px 6px 0px #000000;
             z-index: 100;
             display: none;
         }
-        .auth-panel.active { display: block; }
-        .box-input {
-            width: 100%;
-            padding: 12px;
+        .auth-box.visible {
+            display: block;
+        }
+        .auth-box h3 {
+            text-transform: uppercase;
             margin-bottom: 15px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 6px;
-            color: white;
+            font-size: 18px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+        }
+
+        .input-style {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #000000;
+            font-size: 14px;
             outline: none;
         }
-        .panel-btn {
+        .submit-btn {
             width: 100%;
             padding: 12px;
-            background: #4a90e2;
-            color: white;
-            border: none;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
             font-weight: bold;
-            border-radius: 6px;
             text-transform: uppercase;
-            cursor: pointer;
-        }
-        .err-label { color: #ff6b6b; font-size: 12px; margin-top: -10px; margin-bottom: 10px; display: none; }
-
-
-        /* --- 2. NEW SIDEBAR LAYOUT FOR INSIDE DASHBOARD --- */
-        .dashboard-container {
-            display: none; /* Initially Hidden */
-            position: relative;
-            z-index: 5;
-        }
-
-        /* Top Header Bar */
-        .dash-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(20, 25, 35, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 30px;
-            z-index: 100;
-        }
-        .dash-header h2 { font-weight: 700; letter-spacing: 1px; font-size: 24px; color: #54a0ff;}
-        
-        .logout-action {
-            padding: 8px 18px;
-            background: #ff5e57;
-            color: white;
-            border: none;
-            font-weight: bold;
-            border-radius: 6px;
             cursor: pointer;
             transition: 0.2s;
         }
-        .logout-action:hover { background: #ff3f34; }
-
-        /* Left Sidebar Line Layout */
-        .sidebar-menu {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 280px;
-            height: calc(100vh - 70px);
-            background: rgba(15, 22, 36, 0.75);
-            backdrop-filter: blur(15px);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 99;
+        .submit-btn:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+        .err-txt {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none;
         }
 
-        /* Rainbow Sidebar Links */
-        .sidebar-btn {
+        /* --- 2. DASHBOARD SCREEN --- */
+        .dashboard-container {
+            display: none;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #000000;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .dashboard-header h2 {
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Top Action Tools (Search & Utilities) */
+        .top-tools-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .search-box-container {
+            flex-grow: 1;
+            min-width: 280px;
+            position: relative;
+        }
+
+        .search-input {
             width: 100%;
-            padding: 14px 18px;
-            border: none;
-            color: #ffffff;
+            padding: 12px 15px;
+            font-size: 15px;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            outline: none;
             font-weight: 600;
-            border-radius: 8px;
+        }
+        .search-input:focus {
+            background: #fffde7;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .logout-btn:hover {
+            background: white;
+            color: red;
+            border-color: red;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .tab-link {
+            padding: 12px 20px;
+            background: #ffffff;
+            border: 2px solid #000000;
+            font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 12.5px;
-            text-align: left;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid transparent;
+            transition: 0.2s;
         }
-        .sidebar-btn:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.08); }
-        
-        /* Left border colors reflecting active button category */
-        .btn-student.active, .btn-student:hover { border-left-color: #5f27cd; background: rgba(95, 39, 205, 0.15); color: #9b5de5; }
-        .btn-teacher.active, .btn-teacher:hover { border-left-color: #00d2d3; background: rgba(0, 210, 211, 0.15); color: #00d2d3; }
-        .btn-t-att.active, .btn-t-att:hover { border-left-color: #ff9f43; background: rgba(255, 159, 67, 0.15); color: #ff9f43; }
-        .btn-s-att.active, .btn-s-att:hover { border-left-color: #10ac84; background: rgba(16, 172, 132, 0.15); color: #10ac84; }
-        .btn-results.active, .btn-results:hover { border-left-color: #ee5253; background: rgba(238, 82, 83, 0.15); color: #ee5253; }
-        .btn-notice.active, .btn-notice:hover { border-left-color: #c8d6e5; background: rgba(200, 214, 229, 0.15); color: #c8d6e5; }
-
-        /* Main Workspace Right Content Dynamic Area */
-        .main-workspace {
-            margin-left: 280px;
-            padding: 100px 40px 40px 40px;
-            min-height: 100vh;
+        .tab-link.active, .tab-link:hover {
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 4px 4px 0px #cccccc;
         }
 
-        .tab-view { 
-            display: none; 
-            background: rgba(20, 30, 45, 0.6); 
-            padding: 30px; 
-            border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .tab-panel {
+            display: none;
         }
-        .tab-view.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
+        .tab-panel.active {
+            display: block;
         }
-        #view-students .section-title { color: #a29bfe; }
-        #view-teachers .section-title { color: #00d2d3; }
-        #view-teacher-attendance .section-title { color: #ff9f43; }
-        #view-student-attendance .section-title { color: #10ac84; }
-        #view-results .section-title { color: #ee5253; }
-        #view-notice .section-title { color: #c8d6e5; }
 
-        /* Tables Glassmorphism Design */
-        .table-scroll {
-            max-height: 550px;
-            overflow-y: auto;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .panel-info-bar {
+            background: #f9f9f9;
+            padding: 12px;
+            border-left: 5px solid #000000;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
+            border: 3px solid #000000;
+        }
+        th, td {
+            border: 1px solid #000000;
+            padding: 10px 12px;
+            text-align: left;
         }
         th {
-            position: sticky;
-            top: 0;
-            color: white;
-            padding: 14px;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1px;
-            z-index: 5;
-            background: #0f1624;
-        }
-        td {
-            padding: 10px 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(10, 15, 25, 0.4);
-        }
-        td input, td select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid transparent;
-            background: transparent;
-            font-size: 14px;
-            outline: none;
+            background: #000000;
             color: #ffffff;
-            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
-        td input::placeholder { color: rgba(255,255,255,0.3); }
-        td input:focus, td select:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        tr:hover td { background: rgba(255, 255, 255, 0.03); }
-
-        select option { background: #141e2d; color: white; }
-
-        /* Notice Board Grid */
-        .grid-notice { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .color-card { padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
-        .card-blue { background: linear-gradient(135deg, rgba(84, 160, 255, 0.2), rgba(0, 210, 211, 0.1)); }
-        .card-pink { background: linear-gradient(135deg, rgba(255, 159, 243, 0.2), rgba(243, 104, 224, 0.1)); }
-        .card-yellow { background: linear-gradient(135deg, rgba(255, 255, 102, 0.15), rgba(255, 159, 67, 0.1)); }
-        
-        .color-card textarea {
+        td input {
             width: 100%;
-            height: 120px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            padding: 12px;
-            margin-top: 12px;
-            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 15px;
+            color: #000000;
+        }
+        td input:focus {
+            background: #f0f0f0;
+            font-weight: bold;
+        }
+        td input[readonly] {
+            background: #f4f4f4;
+            font-weight: bold;
+            cursor: not-allowed;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .util-btn {
+            padding: 10px 18px;
+            background: #ffffff;
+            border: 2px solid #000000;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 3px 3px 0px #000000;
+            margin-right: 10px;
+        }
+        .util-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+        .excel-btn {
+            background: #1d6f42;
+            color: #ffffff;
+            border-color: #1d6f42;
+        }
+        .excel-btn:hover {
+            background: #13472a;
+            color: #ffffff;
+        }
+
+        .notice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .notice-card {
+            border: 2px solid #000000;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 4px 4px 0px #000000;
+        }
+        .notice-card h4 {
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .notice-card textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px dashed #000000;
+            padding: 10px;
             resize: none;
             outline: none;
         }
@@ -343,244 +346,489 @@
 </head>
 <body>
 
-    <!-- Glowing Blue Moon Background Object Shared across pages -->
-    <div class="blue-moon-watermark"></div>
-
-    <!-- ============================================
-         1. LOGIN PAGE (BLUE MOON & ELON MUSK)
-         ============================================ -->
-    <div class="moon-login-page" id="authScreen">
-        <div class="elon-sidebar">
-            <h2>Elon Musk Facts</h2>
-            <ul>
-                <li><b>SpaceX Mastermind:</b> Reusable rockets banakar space travel ko sasta kiya.</li>
-                <li><b>Tesla Revolution:</b> Electric car industry ko poori duniya me establish kiya.</li>
-                <li><b>Neuralink Vision:</b> Human brain ko direct AI aur computer se jodne par kaam jari hai.</li>
-                <li><b>Multiplanetary Aim:</b> Inka sabse bada sapna insano ko Mars par basana hai.</li>
-                <li><b>Work Ethic:</b> Ek samay me hafto tak 100+ ghante lagatar kaam karte the.</li>
-            </ul>
+    <div class="ai-login-page" id="authPage">
+        <div class="top-auth-bar">
+            <button class="auth-toggle-btn active" id="loginToggle" onclick="toggleAuthMode('login')">Login</button>
+            <button class="auth-toggle-btn" id="regToggle" onclick="toggleAuthMode('register')">Register</button>
         </div>
 
-        <div class="center-branding">
-            <h1>Nexus Academy</h1>
-            <p style="color: #a2d2ff; letter-spacing: 3px; font-size: 14px; margin-top: 5px;">NEXT-GEN EDUCATION MANAGEMENT</p>
+        <div class="auth-box visible" id="loginBox">
+            <h3>System Login</h3>
+            <input type="text" class="input-style" id="loginUser" placeholder="Username (admin)">
+            <input type="password" class="input-style" id="loginPass" placeholder="Password (admin123)">
+            <div class="err-txt" id="loginErr">Invalid Username or Password!</div>
+            <button class="submit-btn" onclick="submitLogin()">Sign In</button>
         </div>
 
-        <div class="auth-bar">
-            <button class="auth-btn active" id="btnLogMode" onclick="switchAuthMode('login')">Login</button>
-            <button class="auth-btn" id="btnRegMode" onclick="switchAuthMode('register')">Register</button>
+        <div class="auth-box" id="regBox">
+            <h3>Create Account</h3>
+            <input type="text" class="input-style" id="regUser" placeholder="Choose Username">
+            <input type="email" class="input-style" placeholder="Email Address">
+            <input type="password" class="input-style" id="regPass" placeholder="Create Password">
+            <div class="err-txt" id="regErr">Please fill all fields!</div>
+            <button class="submit-btn" onclick="submitRegister()">Register Now</button>
         </div>
 
-        <div class="auth-panel active" id="boxLogin">
-            <h3>Admin Security Login</h3>
-            <input type="text" class="box-input" id="inpUser" placeholder="Username (admin)">
-            <input type="password" class="box-input" id="inpPass" placeholder="Password (admin123)">
-            <div class="err-label" id="lblLogErr">Invalid ID/Password Entry!</div>
-            <button class="panel-btn" onclick="executeLogin()">Access Control</button>
-        </div>
-
-        <div class="auth-panel" id="boxRegister">
-            <h3>New Admin Setup</h3>
-            <input type="text" class="box-input" id="inpNewUser" placeholder="Choose Custom Username">
-            <input type="password" class="box-input" id="inpNewPass" placeholder="Setup Password">
-            <div class="err-label" id="lblRegErr">Please fill all credentials fields!</div>
-            <button class="panel-btn" onclick="executeRegister()">Register System</button>
+        <div class="ai-brand-title">
+            <h1>School<br>Management</h1>
+            <p>Artificial Intelligence Dashboard System</p>
         </div>
     </div>
 
-
-    <!-- ============================================
-         2. CORE SIDEBAR INTEGRATED DASHBOARD 
-         ============================================ -->
-    <div class="dashboard-container" id="mainDashboard">
-        
-        <!-- Top Fixed Bar -->
-        <div class="dash-header">
-            <h2>🌟 Nexus Systems Portal</h2>
-            <button class="logout-action" onclick="executeLogout()">Disconnect Portal</button>
+    <div class="dashboard-container" id="dashboardScreen">
+        <div class="dashboard-header">
+            <h2>School Management System</h2>
+            <div>
+                <button class="util-btn" onclick="clearSavedData()">Reset Data</button>
+                <button class="logout-btn" onclick="triggerLogout()">Secure Logout</button>
+            </div>
         </div>
 
-        <!-- NEW UPDATED SIDEBAR (LEFT LINE SE SIDEBAR ARRANGEMENT) -->
-        <div class="sidebar-menu">
-            <button class="sidebar-btn btn-student active" onclick="activatePanel(event, 'view-students')">Students Register (25)</button>
-            <button class="sidebar-btn btn-teacher" onclick="activatePanel(event, 'view-teachers')">Teachers Directory (25)</button>
-            <button class="sidebar-btn btn-t-att" onclick="activatePanel(event, 'view-teacher-attendance')">📢 Teacher Attendance</button>
-            <button class="sidebar-btn btn-s-att" onclick="activatePanel(event, 'view-student-attendance')">Student Attendance</button>
-            <button class="sidebar-btn btn-results" onclick="activatePanel(event, 'view-results')">Performance Grading</button>
-            <button class="sidebar-btn btn-notice" onclick="activatePanel(event, 'view-notice')">Live Billboard Notice</button>
+        <!-- Top Tools: Search & Export -->
+        <div class="top-tools-bar">
+            <div class="search-box-container">
+                <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Search student name, roll number, class, or subject..." onkeyup="filterTables()">
+            </div>
         </div>
 
-        <!-- Right Side Main Workspace Content Box -->
-        <div class="main-workspace">
+        <div class="tabs-nav">
+            <button class="tab-link active" onclick="openTab(event, 'tab-students')">Students Data (15)</button>
+            <button class="tab-link" onclick="openTab(event, 'tab-teachers')">Teachers & Subjects (15)</button>
+            <button class="tab-link" onclick="openTab(event, 'tab-attendance')">Attendance Tracker</button>
+            <button class="tab-link" onclick="openTab(event, 'tab-results')">Exam Results</button>
+            <button class="tab-link" onclick="openTab(event, 'tab-fees')">⭐ Fee Status</button>
+            <button class="tab-link" onclick="openTab(event, 'tab-board')">⭐ Admin Notice Board</button>
+        </div>
 
-            <!-- PANEL 1: STUDENTS MATRIX (25 Rows) -->
-            <div id="view-students" class="tab-view active">
-                <h3 class="section-title">Student Profile Databank</h3>
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr><th>S.No</th><th>Student Roll ID</th><th>Student Full Name</th><th>Academic Class/Standard</th></tr>
-                        </thead>
-                        <tbody id="gridStudents"></tbody>
-                    </table>
+        <!-- Tab 1: Students -->
+        <div id="tab-students" class="tab-panel active">
+            <div class="panel-info-bar">
+                <span>💡 Tip: Excel style table with auto-save feature.</span>
+                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableStudents', 'Students_Data.csv')">📊 Export to Excel (.CSV)</button>
+            </div>
+            <table id="tableStudents">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">S.No</th>
+                        <th style="width: 20%;">Roll Number</th>
+                        <th style="width: 50%;">Student Full Name</th>
+                        <th style="width: 20%;">Class & Section</th>
+                    </tr>
+                </thead>
+                <tbody id="studentBody"></tbody>
+            </table>
+            <button class="util-btn" onclick="window.print()">Print Students List</button>
+            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableStudents', 'Students_Data.csv')">📊 Export to Excel (.CSV)</button>
+        </div>
+
+        <!-- Tab 2: Teachers -->
+        <div id="tab-teachers" class="tab-panel">
+            <div class="panel-info-bar">
+                <span>💡 Teachers roster and subject allocation.</span>
+                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableTeachers', 'Teachers_Data.csv')">📊 Export to Excel (.CSV)</button>
+            </div>
+            <table id="tableTeachers">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">S.No</th>
+                        <th style="width: 20%;">Teacher ID</th>
+                        <th style="width: 40%;">Teacher Name</th>
+                        <th style="width: 30%;">Assigned Subject</th>
+                    </tr>
+                </thead>
+                <tbody id="teacherBody"></tbody>
+            </table>
+            <button class="util-btn" onclick="window.print()">Print Teachers List</button>
+            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableTeachers', 'Teachers_Data.csv')">📊 Export to Excel (.CSV)</button>
+        </div>
+
+        <!-- Tab 3: Attendance -->
+        <div id="tab-attendance" class="tab-panel">
+            <div class="panel-info-bar">
+                <span>💡 Attendance % and remarks are calculated automatically.</span>
+                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableAttendance', 'Attendance_Report.csv')">📊 Export to Excel (.CSV)</button>
+            </div>
+            <table id="tableAttendance">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Student Name</th>
+                        <th>Total Days</th>
+                        <th>Present Days</th>
+                        <th>Attendance % & Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceBody"></tbody>
+            </table>
+            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableAttendance', 'Attendance_Report.csv')">📊 Export to Excel (.CSV)</button>
+        </div>
+
+        <!-- Tab 4: Exam Results -->
+        <div id="tab-results" class="tab-panel">
+            <div class="panel-info-bar">
+                <span>💡 Enter subject marks to auto-generate grades.</span>
+                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableResults', 'Exam_Results.csv')">📊 Export to Excel (.CSV)</button>
+            </div>
+            <table id="tableResults">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Student Name</th>
+                        <th>Maths</th>
+                        <th>Science</th>
+                        <th>English</th>
+                        <th>Final Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody"></tbody>
+            </table>
+            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableResults', 'Exam_Results.csv')">📊 Export to Excel (.CSV)</button>
+        </div>
+
+        <!-- Tab 5: Fees -->
+        <div id="tab-fees" class="tab-panel">
+            <div class="panel-info-bar">
+                <span>⭐ Fee balance due and status updated dynamically.</span>
+                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableFees', 'Fee_Status.csv')">📊 Export to Excel (.CSV)</button>
+            </div>
+            <table id="tableFees">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Student Name</th>
+                        <th>Total Fee (₹)</th>
+                        <th>Paid Amount (₹)</th>
+                        <th>Balance Due (₹)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="feeBody"></tbody>
+            </table>
+            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableFees', 'Fee_Status.csv')">📊 Export to Excel (.CSV)</button>
+        </div>
+
+        <!-- Tab 6: Notice Board -->
+        <div id="tab-board" class="tab-panel">
+            <div class="panel-info-bar">⭐ Admin Notice Board: Saved live in local storage.</div>
+            <div class="notice-grid">
+                <div class="notice-card">
+                    <h4>Urgent Announcement</h4>
+                    <textarea id="notice1" class="persist-input" placeholder="E.g., School remains closed tomorrow due to heavy rain."></textarea>
+                </div>
+                <div class="notice-card">
+                    <h4>Teacher's Meeting Agenda</h4>
+                    <textarea id="notice2" class="persist-input" placeholder="Type meeting notes here..."></textarea>
+                </div>
+                <div class="notice-card">
+                    <h4>Upcoming Events & Exams</h4>
+                    <textarea id="notice3" class="persist-input" placeholder="E.g., Term exams start next Monday."></textarea>
                 </div>
             </div>
-
-            <!-- PANEL 2: TEACHERS REGISTRY (25 Rows) -->
-            <div id="view-teachers" class="tab-view">
-                <h3 class="section-title">Faculty Records</h3>
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr><th>S.No</th><th>Teacher Code</th><th>Instructor Full Name</th><th>Core Allotted Subject</th></tr>
-                        </thead>
-                        <tbody id="gridTeachers"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- PANEL 3: TEACHER ATTENDANCE (25 Rows) -->
-            <div id="view-teacher-attendance" class="tab-view">
-                <h3 class="section-title">Faculty Attendance Log</h3>
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr><th>S.No</th><th>Faculty Name</th><th>Duty Allocation</th><th>Today's Status</th></tr>
-                        </thead>
-                        <tbody id="gridTeacherAttendance"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- PANEL 4: STUDENT ATTENDANCE -->
-            <div id="view-student-attendance" class="tab-view">
-                <h3 class="section-title">Student Ledger Attendance</h3>
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr><th>S.No</th><th>Student Identity Name</th><th>Total Compiled Days</th><th>Present Computations</th></tr>
-                        </thead>
-                        <tbody id="gridStudentAttendance"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- PANEL 5: EXAM MARKS GRADING SHEET -->
-            <div id="view-results" class="tab-view">
-                <h3 class="section-title">Term Examination Scoresheet</h3>
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr><th>S.No</th><th>Pupil Name</th><th>Mathematics</th><th>Science Domain</th><th>Languages</th><th>Final Grade</th></tr>
-                        </thead>
-                        <tbody id="gridResults"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- PANEL 6: NOTICE BILLBOARD -->
-            <div id="view-notice" class="tab-view">
-                <h3 class="section-title">Central Bulletin Information</h3>
-                <div class="grid-notice">
-                    <div class="color-card card-blue">
-                        <h3 style="color: #54a0ff;">🚀 Academic Notice</h3>
-                        <textarea placeholder="Write institutional circulars here..."></textarea>
-                    </div>
-                    <div class="color-card card-pink">
-                        <h3 style="color: #ff9ff3;">⚡ Examination Wing</h3>
-                        <textarea placeholder="Write curriculum scheduling notes here..."></textarea>
-                    </div>
-                    <div class="color-card card-yellow">
-                        <h3 style="color: #ff9f43;">💡 Faculty Common Room</h3>
-                        <textarea placeholder="Allot special staff notifications..."></textarea>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <!-- ============================================
-         3. JAVASCRIPT LOGIC DRIVER
-         ============================================ -->
     <script>
-        let systemAdminUser = "admin";
-        let systemAdminPass = "admin123";
+        let registeredUser = "admin";
+        let registeredPass = "admin123";
 
-        function switchAuthMode(targetMode) {
-            const btnLogMode = document.getElementById('btnLogMode');
-            const btnRegMode = document.getElementById('btnRegMode');
-            const boxLogin = document.getElementById('boxLogin');
-            const boxRegister = document.getElementById('boxRegister');
+        function toggleAuthMode(mode) {
+            const loginToggle = document.getElementById('loginToggle');
+            const regToggle = document.getElementById('regToggle');
+            const loginBox = document.getElementById('loginBox');
+            const regBox = document.getElementById('regBox');
 
-            if(targetMode === 'login') {
-                btnLogMode.className = 'auth-btn active';
-                btnRegMode.className = 'auth-btn';
-                boxLogin.className = 'auth-panel active';
-                boxRegister.className = 'auth-panel';
+            if (mode === 'login') {
+                loginToggle.classList.add('active');
+                regToggle.classList.remove('active');
+                loginBox.classList.add('visible');
+                regBox.classList.remove('visible');
             } else {
-                btnRegMode.className = 'auth-btn active';
-                btnLogMode.className = 'auth-btn';
-                boxRegister.className = 'auth-panel active';
-                boxLogin.className = 'auth-panel';
+                regToggle.classList.add('active');
+                loginToggle.classList.remove('active');
+                regBox.classList.add('visible');
+                loginBox.classList.remove('visible');
             }
         }
 
-        function executeRegister() {
-            const userVal = document.getElementById('inpNewUser').value.trim();
-            const passVal = document.getElementById('inpNewPass').value.trim();
-            if(!userVal || !passVal) {
-                document.getElementById('lblRegErr').style.display = 'block';
+        function submitRegister() {
+            const u = document.getElementById('regUser').value.trim();
+            const p = document.getElementById('regPass').value.trim();
+            const err = document.getElementById('regErr');
+
+            if(!u || !p) {
+                err.style.display = 'block';
                 return;
             }
-            systemAdminUser = userVal;
-            systemAdminPass = passVal;
-            alert("Admin Registered Successfully!");
-            switchAuthMode('login');
+            
+            registeredUser = u;
+            registeredPass = p;
+            alert("Registration Successful! Please login with your credentials.");
+            toggleAuthMode('login');
+            document.getElementById('loginUser').value = u;
         }
 
-        function executeLogin() {
-            const userVal = document.getElementById('inpUser').value.trim();
-            const passVerification = document.getElementById('inpPass').value.trim();
-            if(userVal === systemAdminUser && passVerification === systemAdminPass) {
-                document.getElementById('authScreen').style.display = 'none';
-                document.getElementById('mainDashboard').style.display = 'block';
+        function submitLogin() {
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value.trim();
+            const err = document.getElementById('loginErr');
+
+            if (u === registeredUser && p === registeredPass) {
+                document.getElementById('authPage').style.display = 'none';
+                document.getElementById('dashboardScreen').style.display = 'block';
             } else {
-                document.getElementById('lblLogErr').style.display = 'block';
+                err.style.display = 'block';
             }
         }
 
-        function executeLogout() {
-            document.getElementById('authScreen').style.display = 'flex';
-            document.getElementById('mainDashboard').style.display = 'none';
+        function triggerLogout() {
+            document.getElementById('loginUser').value = "";
+            document.getElementById('loginPass').value = "";
+            document.getElementById('loginErr').style.display = 'none';
+            document.getElementById('authPage').style.display = 'flex';
+            document.getElementById('dashboardScreen').style.display = 'none';
         }
 
-        function activatePanel(event, targetPanelId) {
-            const views = document.getElementsByClassName('tab-view');
-            for(let i = 0; i < views.length; i++) views[i].classList.remove('active');
-
-            const tabButtons = document.getElementsByClassName('sidebar-btn');
-            for(let i = 0; i < tabButtons.length; i++) tabButtons[i].classList.remove('active');
-
-            document.getElementById(targetPanelId).classList.add('active');
-            event.currentTarget.classList.add('active');
+        function openTab(evt, tabName) {
+            const panels = document.getElementsByClassName("tab-panel");
+            for (let i = 0; i < panels.length; i++) {
+                panels[i].classList.remove("active");
+            }
+            const links = document.getElementsByClassName("tab-link");
+            for (let i = 0; i < links.length; i++) {
+                links[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Re-apply filter when switching tabs
+            filterTables();
         }
 
+        /* --- FEATURE 1: DYNAMIC LIVE SEARCH --- */
+        function filterTables() {
+            const query = document.getElementById('globalSearch').value.toLowerCase().trim();
+            const activePanel = document.querySelector('.tab-panel.active');
+            if(!activePanel) return;
+
+            const rows = activePanel.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                let match = false;
+                
+                // Check all input values in row
+                inputs.forEach(input => {
+                    if (input.value.toLowerCase().includes(query)) {
+                        match = true;
+                    }
+                });
+
+                // Also check static text content (e.g., S.No column)
+                if (row.textContent.toLowerCase().includes(query)) {
+                    match = true;
+                }
+
+                row.style.display = match ? '' : 'none';
+            });
+        }
+
+        /* --- FEATURE 2: EXPORT TABLE DATA TO EXCEL (.CSV) --- */
+        function exportTableToCSV(tableId, filename) {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+
+            let csv = [];
+            
+            // Extract headers
+            const headers = [];
+            table.querySelectorAll('th').forEach(th => {
+                headers.push(`"${th.innerText.trim()}"`);
+            });
+            csv.push(headers.join(','));
+
+            // Extract row data (reading from inputs correctly)
+            table.querySelectorAll('tbody tr').forEach(row => {
+                // Export only visible rows (respecting search filter)
+                if(row.style.display === 'none') return;
+
+                const rowData = [];
+                row.querySelectorAll('td').forEach(td => {
+                    const input = td.querySelector('input');
+                    let val = input ? input.value : td.innerText.trim();
+                    val = val.replace(/"/g, '""'); // Escape inner double quotes
+                    rowData.push(`"${val}"`);
+                });
+                csv.push(rowData.join(','));
+            });
+
+            if (csv.length <= 1) {
+                alert("No visible data found to export!");
+                return;
+            }
+
+            // Create Blob and trigger download
+            const csvBlob = new Blob(['\ufeff' + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(csvBlob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        /* --- Dynamic Auto Calculations --- */
+        function calculateFee(row) {
+            const total = parseFloat(document.getElementById(`fee_total_${row}`).value) || 0;
+            const paid = parseFloat(document.getElementById(`fee_paid_${row}`).value) || 0;
+            const dueField = document.getElementById(`fee_due_${row}`);
+            const statusField = document.getElementById(`fee_status_${row}`);
+
+            const due = total - paid;
+            dueField.value = due >= 0 ? due : 0;
+
+            if (total > 0 && due <= 0) {
+                statusField.value = "PAID";
+            } else if (paid > 0 && due > 0) {
+                statusField.value = "PARTIAL";
+            } else if (total > 0 && paid === 0) {
+                statusField.value = "PENDING";
+            } else {
+                statusField.value = "";
+            }
+            saveAllData();
+        }
+
+        function calculateGrade(row) {
+            const m = parseFloat(document.getElementById(`m_${row}`).value);
+            const s = parseFloat(document.getElementById(`s_${row}`).value);
+            const e = parseFloat(document.getElementById(`e_${row}`).value);
+            const gradeField = document.getElementById(`g_${row}`);
+
+            let count = 0, sum = 0;
+            if(!isNaN(m)) { sum += m; count++; }
+            if(!isNaN(s)) { sum += s; count++; }
+            if(!isNaN(e)) { sum += e; count++; }
+
+            if(count === 0) { gradeField.value = ""; return; }
+            const avg = sum / count;
+
+            if(avg >= 90) gradeField.value = "A+";
+            else if(avg >= 80) gradeField.value = "A";
+            else if(avg >= 70) gradeField.value = "B";
+            else if(avg >= 60) gradeField.value = "C";
+            else if(avg >= 50) gradeField.value = "D";
+            else gradeField.value = "F";
+
+            saveAllData();
+        }
+
+        function calculateAttendance(row) {
+            const total = parseFloat(document.getElementById(`att_tot_${row}`).value);
+            const present = parseFloat(document.getElementById(`att_pres_${row}`).value);
+            const remField = document.getElementById(`att_rem_${row}`);
+
+            if(!isNaN(total) && !isNaN(present) && total > 0) {
+                const pct = Math.round((present / total) * 100);
+                remField.value = `${pct}% - ${pct >= 75 ? 'Good' : 'Shortage'}`;
+            } else {
+                remField.value = "";
+            }
+            saveAllData();
+        }
+
+        /* --- LocalStorage Data Persistence --- */
+        function saveAllData() {
+            const data = {};
+            document.querySelectorAll('.persist-input').forEach(input => {
+                if(input.id) data[input.id] = input.value;
+            });
+            localStorage.setItem('sms_app_data', JSON.stringify(data));
+        }
+
+        function loadAllData() {
+            const saved = localStorage.getItem('sms_app_data');
+            if(!saved) return;
+            const data = JSON.parse(saved);
+            Object.keys(data).forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.value = data[id];
+            });
+        }
+
+        function clearSavedData() {
+            if(confirm("Reset all saved data across tables?")) {
+                localStorage.removeItem('sms_app_data');
+                location.reload();
+            }
+        }
+
+        /* --- Initialization --- */
         window.onload = function() {
-            const requiredLimit = 25;
-            const gridStudents = document.getElementById('gridStudents');
-            const gridTeachers = document.getElementById('gridTeachers');
-            const gridTeacherAttendance = document.getElementById('gridTeacherAttendance');
-            const gridStudentAttendance = document.getElementById('gridStudentAttendance');
-            const gridResults = document.getElementById('gridResults');
+            const totalRows = 15;
+            
+            const studentBody = document.getElementById('studentBody');
+            const teacherBody = document.getElementById('teacherBody');
+            const attendanceBody = document.getElementById('attendanceBody');
+            const resultBody = document.getElementById('resultBody');
+            const feeBody = document.getElementById('feeBody');
 
-            for (let i = 1; i <= requiredLimit; i++) {
-                gridStudents.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="NX-2026${String(i).padStart(2, '0')}"></td><td><input type="text" placeholder="Enter Student Name"></td><td><input type="text" placeholder="Class / Sec"></td></tr>`;
-                gridTeachers.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="FAC-9${String(i).padStart(2, '0')}"></td><td><input type="text" placeholder="Enter Teacher Name"></td><td><input type="text" placeholder="Allotted Subject"></td></tr>`;
-                gridTeacherAttendance.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="Teacher Name"></td><td><input type="text" placeholder="Senior/Junior Wing"></td><td><select><option value="p">🟢 Present</option><option value="a">🔴 Absent</option><option value="l">🟡 On Leave</option></select></td></tr>`;
-                gridStudentAttendance.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="Student Name"></td><td><input type="number" placeholder="200"></td><td><input type="number" placeholder="180"></td></tr>`;
-                gridResults.innerHTML += `<tr><td><b>${i}</b></td><td><input type="text" placeholder="Student Name"></td><td><input type="number" placeholder="Maths"></td><td><input type="number" placeholder="Science"></td><td><input type="number" placeholder="Language"></td><td><input type="text" placeholder="Grade"></td></tr>`;
+            for (let i = 1; i <= totalRows; i++) {
+                studentBody.innerHTML += `
+                    <tr>
+                        <td>${i}</td>
+                        <td><input type="text" id="st_roll_${i}" class="persist-input" placeholder="Roll-${100+i}"></td>
+                        <td><input type="text" id="st_name_${i}" class="persist-input" placeholder="Enter Name"></td>
+                        <td><input type="text" id="st_class_${i}" class="persist-input" placeholder="Class"></td>
+                    </tr>`;
+
+                teacherBody.innerHTML += `
+                    <tr>
+                        <td>${i}</td>
+                        <td><input type="text" id="tc_id_${i}" class="persist-input" placeholder="TID-${200+i}"></td>
+                        <td><input type="text" id="tc_name_${i}" class="persist-input" placeholder="Teacher Name"></td>
+                        <td><input type="text" id="tc_sub_${i}" class="persist-input" placeholder="Subject"></td>
+                    </tr>`;
+
+                attendanceBody.innerHTML += `
+                    <tr>
+                        <td>${i}</td>
+                        <td><input type="text" id="att_name_${i}" class="persist-input" placeholder="Student Name"></td>
+                        <td><input type="number" id="att_tot_${i}" class="persist-input" placeholder="180" oninput="calculateAttendance(${i})"></td>
+                        <td><input type="number" id="att_pres_${i}" class="persist-input" placeholder="150" oninput="calculateAttendance(${i})"></td>
+                        <td><input type="text" id="att_rem_${i}" class="persist-input" readonly placeholder="Auto Calculated"></td>
+                    </tr>`;
+
+                resultBody.innerHTML += `
+                    <tr>
+                        <td>${i}</td>
+                        <td><input type="text" id="res_name_${i}" class="persist-input" placeholder="Student Name"></td>
+                        <td><input type="number" id="m_${i}" class="persist-input" placeholder="Marks" oninput="calculateGrade(${i})"></td>
+                        <td><input type="number" id="s_${i}" class="persist-input" placeholder="Marks" oninput="calculateGrade(${i})"></td>
+                        <td><input type="number" id="e_${i}" class="persist-input" placeholder="Marks" oninput="calculateGrade(${i})"></td>
+                        <td><input type="text" id="g_${i}" class="persist-input" readonly placeholder="Auto Grade"></td>
+                    </tr>`;
+
+                feeBody.innerHTML += `
+                    <tr>
+                        <td>${i}</td>
+                        <td><input type="text" id="fee_name_${i}" class="persist-input" placeholder="Student Name"></td>
+                        <td><input type="number" id="fee_total_${i}" class="persist-input" placeholder="25000" oninput="calculateFee(${i})"></td>
+                        <td><input type="number" id="fee_paid_${i}" class="persist-input" placeholder="20000" oninput="calculateFee(${i})"></td>
+                        <td><input type="number" id="fee_due_${i}" class="persist-input" readonly placeholder="Auto Balance"></td>
+                        <td><input type="text" id="fee_status_${i}" class="persist-input" readonly placeholder="Auto Status"></td>
+                    </tr>`;
             }
+
+            // Auto-save event listener
+            document.addEventListener('input', function(e) {
+                if(e.target.classList.contains('persist-input')) {
+                    saveAllData();
+                }
+            });
+
+            loadAllData();
         };
     </script>
 </body>
