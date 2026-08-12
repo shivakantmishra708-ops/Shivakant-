@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Styled School Management System - Sun Watermark Theme</title>
+    <title>AI Styled School Management System - Vibrant Sun & Colorful Buttons</title>
     <style>
         /* Global Reset */
         * {
@@ -14,20 +14,20 @@
         }
 
         body {
-            background-color: #ffffff;
+            background-color: #f4f6f9;
             color: #000000;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* --- 1. GLOWING SUN WATERMARK BACKGROUND LOGIN PAGE --- */
+        /* --- 1. HIGH-INTENSITY BRIGHT SUN WATERMARK LOGIN PAGE --- */
         .ai-login-page {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #0d0d11;
+            background-color: #08080a;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,28 +36,29 @@
             overflow: hidden;
         }
 
-        /* Glowing Sun Effect created using CSS */
+        /* Highly Vibrant Radiant Sun Watermark */
         .ai-login-page::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: 650px;
+            height: 650px;
             border-radius: 50%;
-            /* Bright Radiant Sun Gradient */
             background: radial-gradient(circle, 
-                        rgba(255, 235, 170, 0.9) 0%, 
-                        rgba(255, 170, 0, 0.6) 30%, 
-                        rgba(255, 90, 0, 0.25) 55%, 
-                        rgba(13, 13, 17, 0) 70%);
-            animation: sunPulse 4s infinite alternate ease-in-out;
+                        #ffffff 0%, 
+                        #fff500 20%, 
+                        #ff7700 45%, 
+                        #ff003c 70%, 
+                        rgba(8, 8, 10, 0) 85%);
+            box-shadow: 0 0 120px #ffbb00, 0 0 220px #ff3300;
+            animation: sunPulse 2s infinite alternate ease-in-out;
             pointer-events: none;
             z-index: 1;
         }
 
-        /* Sun Rays / Aura Overlay */
+        /* Aura Glow Effect */
         .ai-login-page::after {
             content: '';
             position: absolute;
@@ -65,30 +66,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(255, 200, 80, 0.15) 0%, rgba(10, 10, 15, 0.85) 75%);
+            background: radial-gradient(circle at center, rgba(255, 220, 100, 0.25) 0%, rgba(8, 8, 10, 0.9) 75%);
             pointer-events: none;
             z-index: 2;
         }
 
-        /* Sun Glow Pulse Animation */
+        /* Fast & Intense Sun Glow Pulse Animation */
         @keyframes sunPulse {
             0% {
-                transform: translate(-50%, -50%) scale(0.95);
-                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(0.92);
+                opacity: 0.85;
+                filter: brightness(1.3) drop-shadow(0 0 40px #ffeb3b);
             }
             100% {
-                transform: translate(-50%, -50%) scale(1.15);
+                transform: translate(-50%, -50%) scale(1.22);
                 opacity: 1;
+                filter: brightness(1.8) drop-shadow(0 0 90px #ff5722);
             }
         }
 
-        /* Center Branding Text styling over Glowing Sun */
+        /* Center Branding Text */
         .ai-brand-title {
             text-align: center;
             z-index: 10;
             pointer-events: none;
             color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 2px 2px 10px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 200, 0, 0.9);
         }
         .ai-brand-title h1 {
             font-size: 75px;
@@ -103,8 +106,9 @@
             letter-spacing: 6px;
             text-transform: uppercase;
             margin-top: 15px;
-            font-weight: 600;
-            color: #fff3c4;
+            font-weight: 700;
+            color: #fffae6;
+            text-shadow: 0 0 10px #ffaa00;
         }
 
         .top-auth-bar {
@@ -123,14 +127,16 @@
         .auth-toggle-btn {
             padding: 8px 20px;
             border: none;
-            background: none;
+            background: #f0f0f0;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
+            color: #000000;
+            transition: 0.2s;
         }
         .auth-toggle-btn.active {
-            background: #000000;
+            background: #2563eb;
             color: #ffffff;
         }
 
@@ -139,7 +145,7 @@
             top: 90px;
             right: 30px;
             width: 320px;
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(255, 255, 255, 0.98);
             border: 3px solid #000000;
             padding: 25px;
             box-shadow: 6px 6px 0px #000000;
@@ -170,17 +176,17 @@
         .submit-btn {
             width: 100%;
             padding: 12px;
-            background: #000000;
+            background: #16a34a;
             color: #ffffff;
             border: 2px solid #000000;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
+            box-shadow: 3px 3px 0px #000;
             transition: 0.2s;
         }
         .submit-btn:hover {
-            background: #ffffff;
-            color: #000000;
+            background: #15803d;
         }
         .err-txt {
             color: red;
@@ -190,7 +196,7 @@
             display: none;
         }
 
-        /* --- 2. DASHBOARD SCREEN --- */
+        /* --- 2. COLORFUL DASHBOARD SCREEN --- */
         .dashboard-container {
             display: none;
             max-width: 1300px;
@@ -212,6 +218,7 @@
             font-size: 30px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: #1e293b;
         }
 
         .top-tools-bar {
@@ -236,26 +243,67 @@
             box-shadow: 4px 4px 0px #000000;
             outline: none;
             font-weight: 600;
+            background: #ffffff;
         }
         .search-input:focus {
-            background: #fffde7;
+            background: #fef08a;
         }
 
-        .logout-btn {
-            padding: 10px 20px;
-            background: #000000;
-            color: #ffffff;
-            border: 2px solid #000000;
-            cursor: pointer;
+        /* --- COLORFUL BUTTON STYLES --- */
+        .btn-reset {
+            background: #e11d48 !important; /* Vivid Red */
+            color: #ffffff !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 3px 3px 0px #000 !important;
+        }
+        .btn-reset:hover {
+            background: #be123c !important;
+        }
+
+        .btn-logout {
+            background: #7c3aed !important; /* Vibrant Purple */
+            color: #ffffff !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 3px 3px 0px #000 !important;
+        }
+        .btn-logout:hover {
+            background: #6d28d9 !important;
+        }
+
+        .btn-excel {
+            background: #16a34a !important; /* Emerald Green */
+            color: #ffffff !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 3px 3px 0px #000 !important;
+        }
+        .btn-excel:hover {
+            background: #15803d !important;
+        }
+
+        .btn-print {
+            background: #0284c7 !important; /* Bright Blue */
+            color: #ffffff !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 3px 3px 0px #000 !important;
+        }
+        .btn-print:hover {
+            background: #0369a1 !important;
+        }
+
+        .util-btn {
+            padding: 10px 18px;
             font-weight: bold;
+            cursor: pointer;
             text-transform: uppercase;
+            margin-right: 10px;
+            transition: 0.15s ease-in-out;
         }
-        .logout-btn:hover {
-            background: white;
-            color: red;
-            border-color: red;
+        .util-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #000 !important;
         }
 
+        /* --- TABS WITH MULTI-COLOR THEMING --- */
         .tabs-nav {
             display: flex;
             gap: 10px;
@@ -270,11 +318,34 @@
             cursor: pointer;
             text-transform: uppercase;
             transition: 0.2s;
+            box-shadow: 3px 3px 0px #000000;
+            color: #000000;
         }
-        .tab-link.active, .tab-link:hover {
-            background: #000000;
+
+        /* Unique Color for each active tab */
+        .tab-link[data-tab="tab-students"].active {
+            background: #2563eb; /* Blue */
             color: #ffffff;
-            box-shadow: 4px 4px 0px #cccccc;
+        }
+        .tab-link[data-tab="tab-teachers"].active {
+            background: #d97706; /* Amber/Orange */
+            color: #ffffff;
+        }
+        .tab-link[data-tab="tab-attendance"].active {
+            background: #059669; /* Teal/Green */
+            color: #ffffff;
+        }
+        .tab-link[data-tab="tab-results"].active {
+            background: #9333ea; /* Purple */
+            color: #ffffff;
+        }
+        .tab-link[data-tab="tab-fees"].active {
+            background: #ea580c; /* Deep Orange */
+            color: #ffffff;
+        }
+        .tab-link[data-tab="tab-board"].active {
+            background: #ca8a04; /* Bright Yellow-Gold */
+            color: #ffffff;
         }
 
         .tab-panel {
@@ -285,17 +356,21 @@
         }
 
         .panel-info-bar {
-            background: #f9f9f9;
-            padding: 12px;
-            border-left: 5px solid #000000;
+            background: #ffffff;
+            padding: 12px 15px;
+            border-left: 6px solid #2563eb;
+            border-top: 2px solid #000;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
             margin-bottom: 15px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
+            box-shadow: 3px 3px 0px #000000;
         }
 
         table {
@@ -303,6 +378,7 @@
             border-collapse: collapse;
             margin-bottom: 20px;
             border: 3px solid #000000;
+            background: #ffffff;
         }
         th, td {
             border: 1px solid #000000;
@@ -310,7 +386,7 @@
             text-align: left;
         }
         th {
-            background: #000000;
+            background: #0f172a;
             color: #ffffff;
             text-transform: uppercase;
             font-size: 13px;
@@ -325,40 +401,16 @@
             color: #000000;
         }
         td input:focus {
-            background: #f0f0f0;
+            background: #fef9c3;
             font-weight: bold;
         }
         td input[readonly] {
-            background: #f4f4f4;
+            background: #f1f5f9;
             font-weight: bold;
             cursor: not-allowed;
         }
         tr:nth-child(even) {
-            background-color: #fafafa;
-        }
-
-        .util-btn {
-            padding: 10px 18px;
-            background: #ffffff;
-            border: 2px solid #000000;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 3px 3px 0px #000000;
-            margin-right: 10px;
-        }
-        .util-btn:hover {
-            background: #000000;
-            color: #ffffff;
-        }
-        .excel-btn {
-            background: #1d6f42;
-            color: #ffffff;
-            border-color: #1d6f42;
-        }
-        .excel-btn:hover {
-            background: #13472a;
-            color: #ffffff;
+            background-color: #f8fafc;
         }
 
         .notice-grid {
@@ -368,29 +420,33 @@
             margin-top: 20px;
         }
         .notice-card {
-            border: 2px solid #000000;
+            border: 3px solid #000000;
             padding: 20px;
             background: #ffffff;
-            box-shadow: 4px 4px 0px #000000;
+            box-shadow: 5px 5px 0px #000000;
         }
         .notice-card h4 {
             border-bottom: 2px solid #000000;
             padding-bottom: 5px;
             margin-bottom: 10px;
             text-transform: uppercase;
+            color: #1e293b;
         }
         .notice-card textarea {
             width: 100%;
             height: 100px;
-            border: 1px dashed #000000;
+            border: 2px dashed #000000;
             padding: 10px;
             resize: none;
             outline: none;
+            background: #fffbebf5;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
+    <!-- 1. INTENSE BRIGHT SUN LOGIN PAGE -->
     <div class="ai-login-page" id="authPage">
         <div class="top-auth-bar">
             <button class="auth-toggle-btn active" id="loginToggle" onclick="toggleAuthMode('login')">Login</button>
@@ -420,12 +476,13 @@
         </div>
     </div>
 
+    <!-- 2. COLORFUL DASHBOARD SCREEN -->
     <div class="dashboard-container" id="dashboardScreen">
         <div class="dashboard-header">
             <h2>School Management System</h2>
             <div>
-                <button class="util-btn" onclick="clearSavedData()">Reset Data</button>
-                <button class="logout-btn" onclick="triggerLogout()">Secure Logout</button>
+                <button class="util-btn btn-reset" onclick="clearSavedData()">🔄 Reset Data</button>
+                <button class="util-btn btn-logout" onclick="triggerLogout()">🔒 Secure Logout</button>
             </div>
         </div>
 
@@ -435,20 +492,21 @@
             </div>
         </div>
 
+        <!-- Color-Coded Navigation Tabs -->
         <div class="tabs-nav">
-            <button class="tab-link active" onclick="openTab(event, 'tab-students')">Students Data (15)</button>
-            <button class="tab-link" onclick="openTab(event, 'tab-teachers')">Teachers & Subjects (15)</button>
-            <button class="tab-link" onclick="openTab(event, 'tab-attendance')">Attendance Tracker</button>
-            <button class="tab-link" onclick="openTab(event, 'tab-results')">Exam Results</button>
-            <button class="tab-link" onclick="openTab(event, 'tab-fees')">⭐ Fee Status</button>
-            <button class="tab-link" onclick="openTab(event, 'tab-board')">⭐ Admin Notice Board</button>
+            <button class="tab-link active" data-tab="tab-students" onclick="openTab(event, 'tab-students')">📘 Students Data (15)</button>
+            <button class="tab-link" data-tab="tab-teachers" onclick="openTab(event, 'tab-teachers')">📙 Teachers & Subjects (15)</button>
+            <button class="tab-link" data-tab="tab-attendance" onclick="openTab(event, 'tab-attendance')">📗 Attendance Tracker</button>
+            <button class="tab-link" data-tab="tab-results" onclick="openTab(event, 'tab-results')">🔮 Exam Results</button>
+            <button class="tab-link" data-tab="tab-fees" onclick="openTab(event, 'tab-fees')">⭐ Fee Status</button>
+            <button class="tab-link" data-tab="tab-board" onclick="openTab(event, 'tab-board')">📌 Admin Notice Board</button>
         </div>
 
         <!-- Tab 1: Students -->
         <div id="tab-students" class="tab-panel active">
             <div class="panel-info-bar">
                 <span>💡 Tip: Excel style table with auto-save feature.</span>
-                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableStudents', 'Students_Data.csv')">📊 Export to Excel (.CSV)</button>
+                <button class="util-btn btn-excel" onclick="exportTableToCSV('tableStudents', 'Students_Data.csv')">📊 Export to Excel (.CSV)</button>
             </div>
             <table id="tableStudents">
                 <thead>
@@ -461,15 +519,15 @@
                 </thead>
                 <tbody id="studentBody"></tbody>
             </table>
-            <button class="util-btn" onclick="window.print()">Print Students List</button>
-            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableStudents', 'Students_Data.csv')">📊 Export to Excel (.CSV)</button>
+            <button class="util-btn btn-print" onclick="window.print()">🖨️ Print Students List</button>
+            <button class="util-btn btn-excel" onclick="exportTableToCSV('tableStudents', 'Students_Data.csv')">📊 Export to Excel (.CSV)</button>
         </div>
 
         <!-- Tab 2: Teachers -->
         <div id="tab-teachers" class="tab-panel">
             <div class="panel-info-bar">
                 <span>💡 Teachers roster and subject allocation.</span>
-                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableTeachers', 'Teachers_Data.csv')">📊 Export to Excel (.CSV)</button>
+                <button class="util-btn btn-excel" onclick="exportTableToCSV('tableTeachers', 'Teachers_Data.csv')">📊 Export to Excel (.CSV)</button>
             </div>
             <table id="tableTeachers">
                 <thead>
@@ -482,15 +540,15 @@
                 </thead>
                 <tbody id="teacherBody"></tbody>
             </table>
-            <button class="util-btn" onclick="window.print()">Print Teachers List</button>
-            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableTeachers', 'Teachers_Data.csv')">📊 Export to Excel (.CSV)</button>
+            <button class="util-btn btn-print" onclick="window.print()">🖨️ Print Teachers List</button>
+            <button class="util-btn btn-excel" onclick="exportTableToCSV('tableTeachers', 'Teachers_Data.csv')">📊 Export to Excel (.CSV)</button>
         </div>
 
         <!-- Tab 3: Attendance -->
         <div id="tab-attendance" class="tab-panel">
             <div class="panel-info-bar">
                 <span>💡 Attendance % and remarks are calculated automatically.</span>
-                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableAttendance', 'Attendance_Report.csv')">📊 Export to Excel (.CSV)</button>
+                <button class="util-btn btn-excel" onclick="exportTableToCSV('tableAttendance', 'Attendance_Report.csv')">📊 Export to Excel (.CSV)</button>
             </div>
             <table id="tableAttendance">
                 <thead>
@@ -504,14 +562,14 @@
                 </thead>
                 <tbody id="attendanceBody"></tbody>
             </table>
-            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableAttendance', 'Attendance_Report.csv')">📊 Export to Excel (.CSV)</button>
+            <button class="util-btn btn-excel" onclick="exportTableToCSV('tableAttendance', 'Attendance_Report.csv')">📊 Export to Excel (.CSV)</button>
         </div>
 
         <!-- Tab 4: Exam Results -->
         <div id="tab-results" class="tab-panel">
             <div class="panel-info-bar">
                 <span>💡 Enter subject marks to auto-generate grades.</span>
-                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableResults', 'Exam_Results.csv')">📊 Export to Excel (.CSV)</button>
+                <button class="util-btn btn-excel" onclick="exportTableToCSV('tableResults', 'Exam_Results.csv')">📊 Export to Excel (.CSV)</button>
             </div>
             <table id="tableResults">
                 <thead>
@@ -526,14 +584,14 @@
                 </thead>
                 <tbody id="resultBody"></tbody>
             </table>
-            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableResults', 'Exam_Results.csv')">📊 Export to Excel (.CSV)</button>
+            <button class="util-btn btn-excel" onclick="exportTableToCSV('tableResults', 'Exam_Results.csv')">📊 Export to Excel (.CSV)</button>
         </div>
 
         <!-- Tab 5: Fees -->
         <div id="tab-fees" class="tab-panel">
             <div class="panel-info-bar">
                 <span>⭐ Fee balance due and status updated dynamically.</span>
-                <button class="util-btn excel-btn" onclick="exportTableToCSV('tableFees', 'Fee_Status.csv')">📊 Export to Excel (.CSV)</button>
+                <button class="util-btn btn-excel" onclick="exportTableToCSV('tableFees', 'Fee_Status.csv')">📊 Export to Excel (.CSV)</button>
             </div>
             <table id="tableFees">
                 <thead>
@@ -548,7 +606,7 @@
                 </thead>
                 <tbody id="feeBody"></tbody>
             </table>
-            <button class="util-btn excel-btn" onclick="exportTableToCSV('tableFees', 'Fee_Status.csv')">📊 Export to Excel (.CSV)</button>
+            <button class="util-btn btn-excel" onclick="exportTableToCSV('tableFees', 'Fee_Status.csv')">📊 Export to Excel (.CSV)</button>
         </div>
 
         <!-- Tab 6: Notice Board -->
