@@ -22,6 +22,7 @@
             --dark-bg: #090d16;
             --light-bg: #f8fafc;
             --card-bg: #ffffff;
+            --sidebar-bg: #0f172a;
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
@@ -29,317 +30,199 @@
             --radius-md: 12px;
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--light-bg); color: var(--text-main); min-height: 100vh; overflow-x: hidden; }
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-main);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* --- 1. LOGIN SCREEN WITH INTENSE SUN WATERMARK --- */
+        /* AUTH & OVERLAY SCREENS */
         .full-screen-overlay {
-            position: fixed;
-            inset: 0;
-            background: var(--dark-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            overflow: hidden;
+            position: fixed; inset: 0; background: var(--dark-bg);
+            display: flex; justify-content: center; align-items: center; z-index: 9999; overflow-y: auto; padding: 20px;
         }
 
         .sun-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 750px;
-            height: 750px;
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                #ffffff 0%, 
-                #fff700 15%, 
-                #ff8800 35%, 
-                #ff0055 60%, 
-                rgba(9, 13, 22, 0) 80%);
-            filter: blur(25px);
-            animation: sunRadiance 3s infinite alternate ease-in-out;
-            pointer-events: none;
-            opacity: 0.85;
-        }
-
-        .sun-aura {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(255, 200, 0, 0.15) 0%, rgba(9, 13, 22, 0.95) 80%);
-            pointer-events: none;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 750px; height: 750px; border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 0%, #fff700 15%, #ff8800 35%, #ff0055 60%, rgba(9, 13, 22, 0) 80%);
+            filter: blur(25px); animation: sunRadiance 3s infinite alternate ease-in-out; pointer-events: none; opacity: 0.85;
         }
 
         @keyframes sunRadiance {
-            0% {
-                transform: translate(-50%, -50%) scale(0.9);
-                filter: blur(25px) brightness(1.2);
-                box-shadow: 0 0 100px #ffaa00, 0 0 200px #ff0055;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.15);
-                filter: blur(15px) brightness(1.8);
-                box-shadow: 0 0 150px #ffe600, 0 0 300px #ff3300;
-            }
+            0% { transform: translate(-50%, -50%) scale(0.9); filter: blur(25px) brightness(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1.15); filter: blur(15px) brightness(1.8); }
         }
 
         .auth-card {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 480px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-            animation: cardAppear 0.6s ease-out;
+            position: relative; z-index: 10; width: 100%; max-width: 500px; padding: 40px;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 24px; color: #ffffff;
         }
 
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .auth-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
+        .auth-header { text-align: center; margin-bottom: 25px; }
         .auth-header .logo-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #ff9900, #ff0055);
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: #fff;
-            margin-bottom: 15px;
-            box-shadow: 0 10px 20px rgba(255, 102, 0, 0.4);
+            width: 65px; height: 65px; background: linear-gradient(135deg, #ff9900, #ff0055);
+            border-radius: 20px; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 30px; color: #fff; margin-bottom: 12px;
         }
 
-        .auth-header h2 { font-size: 26px; font-weight: 800; }
-        .auth-header p { color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-top: 5px; }
-
-        .form-group { margin-bottom: 20px; }
-        .form-group label {
-            display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.9); text-transform: uppercase; letter-spacing: 0.5px;
-        }
-
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; color: rgba(255,255,255,0.9); text-transform: uppercase; }
         .input-wrapper { position: relative; }
-        .input-wrapper i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: rgba(255, 255, 255, 0.6); }
+        .input-wrapper i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.6); }
 
-        .form-control {
-            width: 100%; padding: 14px 16px 14px 48px; background: rgba(0, 0, 0, 0.3);
+        .form-control, select.form-control {
+            width: 100%; padding: 12px 16px 12px 48px; background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--radius-md);
-            color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s;
+            color: #ffffff; font-size: 14px; outline: none; transition: all 0.3s;
         }
-
-        .form-control:focus {
-            border-color: #ffaa00; background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
-        }
+        select.form-control option { background: var(--dark-bg); color: #fff; }
 
         .btn-gradient {
-            width: 100%; padding: 16px; background: linear-gradient(135deg, #ff9900, #ff0055);
-            border: none; border-radius: var(--radius-md); color: #ffffff; font-size: 16px;
+            width: 100%; padding: 14px; background: linear-gradient(135deg, #ff9900, #ff0055);
+            border: none; border-radius: var(--radius-md); color: #ffffff; font-size: 15px;
             font-weight: 700; cursor: pointer; transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
             display: flex; align-items: center; justify-content: center; gap: 10px;
         }
+        .btn-gradient:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-        .btn-gradient:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .auth-toggle { text-align: center; margin-top: 15px; font-size: 13px; }
+        .auth-toggle a { color: #ffaa00; text-decoration: none; font-weight: 700; cursor: pointer; }
 
-        /* --- 2. PAYMENT SUBSCRIPTION PAGE --- */
-        .pricing-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 25px;
-        }
-
+        /* SUBSCRIPTION CARDS */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .price-card {
             background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-lg); padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s;
+            border-radius: var(--radius-lg); padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;
+        }
+        .price-card.selected { border-color: #ffaa00; background: rgba(255, 170, 0, 0.2); }
+
+        /* DASHBOARD LAYOUT WITH LEFT SIDEBAR */
+        .app-container { display: none; min-height: 100vh; flex-direction: row; }
+
+        .sidebar {
+            width: 270px; background: var(--sidebar-bg); color: #fff;
+            display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 200;
         }
 
-        .price-card:hover, .price-card.selected {
-            border-color: #ffaa00; background: rgba(255, 170, 0, 0.15); transform: translateY(-50%);
-        }
+        .sidebar-brand { padding: 25px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 12px; }
+        .sidebar-brand i { font-size: 28px; color: #ffaa00; }
+        .sidebar-brand h3 { font-size: 16px; font-weight: 800; line-height: 1.2; word-break: break-word; }
 
-        .price-card h3 { font-size: 18px; margin-bottom: 10px; color: #ffaa00; }
-        .price-card .price { font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+        .sidebar-menu { list-style: none; padding: 20px 10px; flex: 1; overflow-y: auto; }
+        .sidebar-menu li { margin-bottom: 6px; }
 
-        /* --- 3. SCHOOL BRANDING SETUP PAGE --- */
-        .setup-card {
-            max-width: 550px;
+        .nav-link {
+            display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: rgba(255, 255, 255, 0.7);
+            text-decoration: none; border-radius: var(--radius-md); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
         }
+        .nav-link:hover, .nav-link.active { background: rgba(255, 255, 255, 0.1); color: #ffffff; }
+        .nav-link.active { background: linear-gradient(135deg, var(--primary), var(--purple)); }
 
-        /* --- 4. MAIN DASHBOARD UI --- */
-        .app-container {
-            display: none; min-height: 100vh; flex-direction: column;
-        }
+        .main-wrapper { margin-left: 270px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
 
         .navbar {
-            background: #ffffff; border-bottom: 1px solid var(--border-color);
-            padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
+            background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 15px 30px;
+            display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;
         }
 
-        .nav-brand { display: flex; align-items: center; gap: 15px; }
-
-        .brand-logo {
-            width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--purple));
-            color: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            font-size: 24px; box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
-        }
-
-        .brand-text h3 { font-size: 20px; font-weight: 800; color: var(--text-main); }
-        .brand-text p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-
-        .nav-controls { display: flex; align-items: center; gap: 20px; }
-
-        .search-bar { position: relative; width: 320px; }
+        .search-bar { position: relative; width: 300px; }
         .search-bar i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
         .search-bar input {
             width: 100%; padding: 10px 16px 10px 42px; background: #f1f5f9; border: 1px solid transparent;
             border-radius: 30px; font-size: 14px; outline: none; transition: all 0.3s;
         }
-        .search-bar input:focus { background: #ffffff; border-color: var(--primary); }
 
-        /* MULTI-COLOR TABS */
-        .tabs-header {
-            background: #ffffff; padding: 15px 30px 0; border-bottom: 1px solid var(--border-color);
-            display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none;
-        }
-        .tabs-header::-webkit-scrollbar { display: none; }
-
-        .tab-btn {
-            padding: 12px 20px; border: 1px solid var(--border-color); border-bottom: none;
-            background: #f8fafc; border-radius: 12px 12px 0 0; font-size: 13px; font-weight: 700;
-            cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s;
-            color: var(--text-muted); white-space: nowrap;
-        }
-
-        .tab-btn:hover { transform: translateY(-2px); }
-
-        /* Dynamic Colors for Active Tabs */
-        .tab-btn[data-target="overview"].active { background: linear-gradient(135deg, #4338ca, #6366f1); color: #fff; }
-        .tab-btn[data-target="students"].active { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #fff; }
-        .tab-btn[data-target="teachers"].active { background: linear-gradient(135deg, #d97706, #fbbf24); color: #fff; }
-        .tab-btn[data-target="results"].active { background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; }
-        .tab-btn[data-target="attendance"].active { background: linear-gradient(135deg, #059669, #34d399); color: #fff; }
-        .tab-btn[data-target="fees"].active { background: linear-gradient(135deg, #db2777, #f472b6); color: #fff; }
-        .tab-btn[data-target="transport"].active { background: linear-gradient(135deg, #eab308, #fef08a); color: #000; }
-        .tab-btn[data-target="library"].active { background: linear-gradient(135deg, #0d9488, #2dd4bf); color: #fff; }
-        .tab-btn[data-target="timetable"].active { background: linear-gradient(135deg, #6366f1, #818cf8); color: #fff; }
-        .tab-btn[data-target="notices"].active { background: linear-gradient(135deg, #ea580c, #fb923c); color: #fff; }
-
-        .main-content { padding: 30px; max-width: 1500px; margin: 0 auto; width: 100%; }
-
-        .tab-pane { display: none; animation: fadeIn 0.3s ease-out; }
-        .tab-pane.active { display: block; }
-
+        .main-content { padding: 30px; flex: 1; max-width: 1500px; width: 100%; }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* KPI CARDS */
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
         .kpi-card {
-            background: var(--card-bg); border-radius: var(--radius-lg); padding: 22px;
+            background: var(--card-bg); border-radius: var(--radius-lg); padding: 20px;
             border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;
-            box-shadow: var(--shadow-sm);
         }
-        .kpi-info h4 { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
-        .kpi-info .kpi-value { font-size: 26px; font-weight: 800; margin-top: 5px; }
-        .kpi-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; }
+        .kpi-info h4 { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+        .kpi-info .kpi-value { font-size: 24px; font-weight: 800; margin-top: 5px; }
+        .kpi-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; }
 
-        /* BUTTONS */
-        .btn {
-            padding: 10px 18px; border-radius: var(--radius-md); border: none; font-weight: 700; font-size: 13px;
-            cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s;
-        }
-        .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
-        .btn-primary { background: linear-gradient(135deg, #4338ca, #6366f1); color: #fff; }
-        .btn-success { background: linear-gradient(135deg, #10b981, #34d399); color: #fff; }
-        .btn-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #fff; }
-        .btn-danger  { background: linear-gradient(135deg, #ef4444, #f87171); color: #fff; }
-        .btn-sky     { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #fff; }
-        .btn-dark    { background: linear-gradient(135deg, #1e293b, #334155); color: #fff; }
-
-        /* TABLES */
-        .card-table-wrapper {
-            background: var(--card-bg); border-radius: var(--radius-lg); border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 25px;
-        }
-        .table-header-bar {
-            padding: 18px 24px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 15px;
-        }
-        .table-header-bar h3 { font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-
+        /* TABLES & CARDS */
+        .card-table-wrapper { background: var(--card-bg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 25px; }
+        .table-header-bar { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 15px; }
         .table-scroll-container { max-height: 650px; overflow-y: auto; }
 
         table.custom-table { width: 100%; border-collapse: collapse; text-align: left; }
-        table.custom-table th {
-            background: #f8fafc; padding: 14px 18px; font-size: 12px; font-weight: 700; color: var(--text-muted);
-            text-transform: uppercase; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10;
-        }
+        table.custom-table th { background: #f8fafc; padding: 14px 18px; font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 10; }
         table.custom-table td { padding: 12px 18px; font-size: 13px; border-bottom: 1px solid var(--border-color); }
         table.custom-table tbody tr:hover { background-color: #f1f5f9; }
 
-        .table-input {
-            width: 100%; padding: 8px 10px; border: 1px solid var(--border-color); border-radius: 8px;
-            font-size: 13px; outline: none; background: #ffffff;
-        }
-        .table-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.1); }
+        .table-input { width: 100%; padding: 8px 10px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 13px; outline: none; background: #ffffff; }
         .table-input[readonly] { background: #f1f5f9; font-weight: 700; color: var(--primary); }
+
+        /* 12 MONTH CALENDAR ATTENDANCE STYLES */
+        .calendar-grid-12 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .month-card { background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .month-title { font-size: 15px; font-weight: 800; text-align: center; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 6px; }
+        .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 11px; }
+        .day-header { font-weight: 700; color: var(--text-muted); padding-bottom: 4px; }
+        .day-cell { padding: 6px 2px; border-radius: 6px; background: #f1f5f9; cursor: pointer; transition: all 0.2s; }
+        .day-cell.present { background: #10b981; color: #fff; }
+        .day-cell.absent { background: #ef4444; color: #fff; }
+        .day-cell.holiday { background: #f59e0b; color: #fff; }
 
         /* NOTICES */
         .notice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .notice-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--border-color); }
         .notice-card textarea { width: 100%; min-height: 100px; border: 1px dashed var(--border-color); border-radius: 8px; padding: 10px; margin-top: 10px; outline: none; resize: vertical; }
 
+        /* BUTTONS */
+        .btn { padding: 10px 18px; border-radius: var(--radius-md); border: none; font-weight: 700; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+        .btn-primary { background: linear-gradient(135deg, #4338ca, #6366f1); color: #fff; }
+        .btn-success { background: linear-gradient(135deg, #10b981, #34d399); color: #fff; }
+        .btn-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #fff; }
+        .btn-sky     { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #fff; }
+        .btn-purple  { background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; }
+        .btn-dark    { background: linear-gradient(135deg, #1e293b, #334155); color: #fff; }
+
         @media print {
-            .navbar, .tabs-header, .btn, .search-bar, .table-header-bar button { display: none !important; }
-            body { background: #fff; } .main-content { padding: 0; }
-            .card-table-wrapper { border: none; box-shadow: none; }
-            .table-scroll-container { max-height: none; overflow: visible; }
+            .sidebar, .navbar, .btn, .search-bar, .table-header-bar button { display: none !important; }
+            .main-wrapper { margin-left: 0; }
+            body { background: #fff; }
+            .card-table-wrapper { border: none; }
+            .table-scroll-container { max-height: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ================= 1. INTENSE SUN LOGIN SCREEN ================= -->
-    <div class="full-screen-overlay" id="screenLogin">
+    <!-- ================= 1. LOGIN & REGISTRATION SCREEN ================= -->
+    <div class="full-screen-overlay" id="screenAuth">
         <div class="sun-watermark"></div>
-        <div class="sun-aura"></div>
         
-        <div class="auth-card">
+        <!-- LOGIN FORM -->
+        <div class="auth-card" id="formLogin">
             <div class="auth-header">
                 <div class="logo-icon"><i class="fa-solid fa-school"></i></div>
-                <h2>School Portal Login</h2>
-                <p>AI Cloud ERP School Management Solution</p>
+                <h2>School ERP Login</h2>
+                <p>रोल का चयन करके पोर्टल में प्रवेश करें</p>
             </div>
 
             <form onsubmit="processLogin(event)">
+                <div class="form-group">
+                    <label>लॉगिन भूमिका (Select Role)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <select id="loginRole" class="form-control">
+                            <option value="admin">एडमिन (Admin Portal)</option>
+                            <option value="teacher">शिक्षक (Teacher Portal)</option>
+                            <option value="student">छात्र (Student Portal)</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>यूज़रनेम (Username)</label>
                     <div class="input-wrapper">
@@ -360,59 +243,114 @@
                     <span>लॉगिन करें (Proceed)</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
+
+                <div class="auth-toggle">
+                    नया खाता बनाना है? <a onclick="toggleAuth('register')">रजिस्ट्रेशन करें (Register)</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- REGISTRATION FORM -->
+        <div class="auth-card" id="formRegister" style="display: none;">
+            <div class="auth-header">
+                <div class="logo-icon" style="background: linear-gradient(135deg, #8b5cf6, #c084fc);"><i class="fa-solid fa-user-plus"></i></div>
+                <h2>नया रजिस्ट्रेशन</h2>
+                <p>यूज़रनेम एवं पासवर्ड सेट करें</p>
+            </div>
+
+            <form onsubmit="processRegister(event)">
+                <div class="form-group">
+                    <label>खाता प्रकार (Role Type)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-users"></i>
+                        <select id="regRole" class="form-control">
+                            <option value="teacher">शिक्षक (Teacher)</option>
+                            <option value="student">छात्र (Student)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>पूरा नाम (Full Name)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="regName" class="form-control" required placeholder="अपना नाम लिखें">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>नया यूज़रनेम (New Username)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="regUser" class="form-control" required placeholder="Create Username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>नया पासवर्ड (New Password)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="regPass" class="form-control" required placeholder="Create Password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-gradient" style="background: linear-gradient(135deg, #8b5cf6, #c084fc);">
+                    <span>साइन अप पूरा करें (Create Account)</span>
+                    <i class="fa-solid fa-check"></i>
+                </button>
+
+                <div class="auth-toggle">
+                    पहले से खाता है? <a onclick="toggleAuth('login')">लॉगिन करें</a>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- ================= 2. PAYMENT & SUBSCRIPTION SCREEN ================= -->
+    <!-- ================= 2. PAYMENT SUBSCRIPTION SCREEN ================= -->
     <div class="full-screen-overlay" id="screenPayment" style="display: none;">
         <div class="sun-watermark"></div>
-        <div class="sun-aura"></div>
-
-        <div class="auth-card" style="max-width: 650px;">
+        <div class="auth-card" style="max-width: 600px;">
             <div class="auth-header">
                 <div class="logo-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fa-solid fa-credit-card"></i></div>
                 <h2>सब्सक्रिप्शन चुनें (Activate ERP)</h2>
-                <p>स्कूल सॉफ्टवेयर इस्तेमाल करने के लिए प्लान चुनें</p>
+                <p>सॉफ्टवेयर का इस्तेमाल जारी रखने के लिए प्लान चुनें</p>
             </div>
 
             <div class="pricing-grid">
                 <div class="price-card selected" id="plan1" onclick="selectPlan('plan1', 999)">
-                    <h3>Basic Plan</h3>
-                    <div class="price">₹999 <span style="font-size: 12px; color: #ccc;">/माह</span></div>
-                    <p style="font-size: 12px; color: #aaa;">60 छात्र + 60 शिक्षक + बेसिक फीचर्स</p>
+                    <h3 style="color: #ffaa00;">Basic Plan</h3>
+                    <div style="font-size: 24px; font-weight: 800; margin: 8px 0;">₹999 /माह</div>
+                    <p style="font-size: 11px; color: #ccc;">60 छात्र + 60 शिक्षक एक्सेस</p>
                 </div>
                 <div class="price-card" id="plan2" onclick="selectPlan('plan2', 4999)">
-                    <h3>Pro Annual Plan</h3>
-                    <div class="price">₹4,999 <span style="font-size: 12px; color: #ccc;">/वर्ष</span></div>
-                    <p style="font-size: 12px; color: #aaa;">अनलिमिटेड एक्सेस + बस + लाइब्रेरी</p>
+                    <h3 style="color: #ffaa00;">Pro Annual</h3>
+                    <div style="font-size: 24px; font-weight: 800; margin: 8px 0;">₹4,999 /वर्ष</div>
+                    <p style="font-size: 11px; color: #ccc;">अनलिमिटेड बस, लाइब्रेरी व टाइमटेबल</p>
                 </div>
             </div>
 
-            <div style="margin-top: 30px;">
+            <div style="margin-top: 25px;">
                 <button type="button" class="btn-gradient" onclick="processPayment()" style="background: linear-gradient(135deg, #10b981, #059669);">
                     <i class="fa-solid fa-lock"></i>
-                    <span>भुगतान करें और आगे बढ़ें (Pay & Continue)</span>
+                    <span>भुगतान करें और आगे बढ़ें</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- ================= 3. SCHOOL NAME SETUP SCREEN ================= -->
+    <!-- ================= 3. SCHOOL SETUP SCREEN ================= -->
     <div class="full-screen-overlay" id="screenSetup" style="display: none;">
         <div class="sun-watermark"></div>
-        <div class="sun-aura"></div>
-
-        <div class="auth-card setup-card">
+        <div class="auth-card">
             <div class="auth-header">
                 <div class="logo-icon" style="background: linear-gradient(135deg, #8b5cf6, #c084fc);"><i class="fa-solid fa-building-columns"></i></div>
-                <h2>अपने स्कूल की जानकारी दर्ज करें</h2>
-                <p>यह नाम पूरे सॉफ्टवेयर और प्रिंट मार्कशीट पर दिखेगा</p>
+                <h2>स्कूल सेटअप दर्ज करें</h2>
+                <p>स्कूल का नाम प्रिंट रिपोर्ट्स पर दिखेगा</p>
             </div>
 
             <form onsubmit="saveSchoolSetup(event)">
                 <div class="form-group">
-                    <label>स्कूल का पूरा नाम (School Name)</label>
+                    <label>स्कूल का पूरा नाम</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-school"></i>
                         <input type="text" id="setupSchoolName" class="form-control" required placeholder="उदा: DPS International School">
@@ -420,7 +358,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>स्कूल टैगलाइन / पता (Tagline / Address)</label>
+                    <label>स्कूल टैगलाइन / पता</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-location-dot"></i>
                         <input type="text" id="setupSchoolTag" class="form-control" required placeholder="उदा: Knowledge is Power - New Delhi">
@@ -428,284 +366,303 @@
                 </div>
 
                 <button type="submit" class="btn-gradient" style="background: linear-gradient(135deg, #8b5cf6, #c084fc);">
-                    <span>सॉफ्टवेयर शुरू करें (Launch Dashboard)</span>
+                    <span>डैशबोर्ड शुरू करें</span>
                     <i class="fa-solid fa-rocket"></i>
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- ================= 4. MAIN APP DASHBOARD ================= -->
+    <!-- ================= 4. MAIN DASHBOARD UI (LEFT SIDEBAR LAYOUT) ================= -->
     <div class="app-container" id="appDashboard">
         
-        <!-- Top Navbar -->
-        <nav class="navbar">
-            <div class="nav-brand">
-                <div class="brand-logo" id="displayLogo"><i class="fa-solid fa-school"></i></div>
-                <div class="brand-text">
-                    <h3 id="displaySchoolName">My School Name</h3>
-                    <p id="displaySchoolTag"><i class="fa-solid fa-circle" style="color: #10b981; font-size: 8px;"></i> Smart Cloud ERP Enabled</p>
+        <!-- LEFT SIDEBAR WITH ALL OPTIONS -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-school"></i>
+                <div>
+                    <h3 id="displaySchoolName">My School</h3>
+                    <span id="displayUserRole" style="font-size: 10px; color: #ffaa00; text-transform: uppercase; font-weight: 800;">ADMIN MODE</span>
                 </div>
             </div>
 
-            <div class="nav-controls">
+            <ul class="sidebar-menu">
+                <li><a class="nav-link active" onclick="switchTab('overview', this)"><i class="fa-solid fa-chart-pie"></i> ओवरव्यू</a></li>
+                <li class="menu-item-role admin-item teacher-item"><a class="nav-link" onclick="switchTab('students', this)"><i class="fa-solid fa-user-graduate"></i> 60 छात्र (Students)</a></li>
+                <li class="menu-item-role admin-item"><a class="nav-link" onclick="switchTab('teachers', this)"><i class="fa-solid fa-chalkboard-user"></i> 60 शिक्षक (Teachers)</a></li>
+                <li class="menu-item-role admin-item teacher-item"><a class="nav-link" onclick="switchTab('results', this)"><i class="fa-solid fa-file-invoice"></i> अंक तालिका (Marks)</a></li>
+                <li class="menu-item-role admin-item teacher-item student-item"><a class="nav-link" onclick="switchTab('attendance', this)"><i class="fa-solid fa-calendar-days"></i> 12 माह उपस्थिति (Attendance)</a></li>
+                <li class="menu-item-role admin-item student-item"><a class="nav-link" onclick="switchTab('fees', this)"><i class="fa-solid fa-indian-rupee-sign"></i> 60 फीस रिकॉर्ड (Fees)</a></li>
+                <li class="menu-item-role admin-item teacher-item student-item"><a class="nav-link" onclick="switchTab('transport', this)"><i class="fa-solid fa-bus"></i> बस एवं ट्रांसपोर्ट</a></li>
+                <li class="menu-item-role admin-item teacher-item student-item"><a class="nav-link" onclick="switchTab('library', this)"><i class="fa-solid fa-book"></i> पुस्तकालय (Library)</a></li>
+                <li class="menu-item-role admin-item teacher-item student-item"><a class="nav-link" onclick="switchTab('timetable', this)"><i class="fa-solid fa-clock"></i> टाइम टेबल</a></li>
+                <li class="menu-item-role admin-item teacher-item student-item"><a class="nav-link" onclick="switchTab('notices', this)"><i class="fa-solid fa-bullhorn"></i> नोटिस बोर्ड</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN WRAPPER -->
+        <div class="main-wrapper">
+            <!-- Top Navbar -->
+            <nav class="navbar">
                 <div class="search-bar">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="globalSearchInput" placeholder="60 छात्रों या शिक्षकों में खोजें..." onkeyup="filterActiveTable()">
+                    <input type="text" id="globalSearchInput" placeholder="डेटा में खोजें..." onkeyup="filterActiveTable()">
                 </div>
 
-                <button class="btn btn-warning" onclick="resetSystemData()">
-                    <i class="fa-solid fa-rotate-left"></i> रीसेट डेटा
-                </button>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button class="btn btn-warning admin-only-btn" onclick="resetSystemData()">
+                        <i class="fa-solid fa-rotate-left"></i> रीसेट डेटा
+                    </button>
 
-                <div style="display: flex; align-items: center; gap: 10px; border-left: 2px solid var(--border-color); padding-left: 15px;">
-                    <div style="width: 38px; height: 38px; border-radius: 50%; background: #10b981; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800;">A</div>
-                    <div>
-                        <div style="font-weight: 800; font-size: 13px;">Admin</div>
-                        <a href="#" onclick="logoutApp()" style="color: var(--danger); font-size: 11px; text-decoration: none; font-weight: 700;">लॉगआउट</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Multi-Color Dynamic Navigation Tabs -->
-        <div class="tabs-header">
-            <button class="tab-btn active" data-target="overview" onclick="switchTab('overview', this)"><i class="fa-solid fa-chart-pie"></i> ओवरव्यू</button>
-            <button class="tab-btn" data-target="students" onclick="switchTab('students', this)"><i class="fa-solid fa-user-graduate"></i> 60 छात्र (Students)</button>
-            <button class="tab-btn" data-target="teachers" onclick="switchTab('teachers', this)"><i class="fa-solid fa-chalkboard-user"></i> 60 शिक्षक (Teachers)</button>
-            <button class="tab-btn" data-target="results" onclick="switchTab('results', this)"><i class="fa-solid fa-file-invoice"></i> अंक तालिका (Marks)</button>
-            <button class="tab-btn" data-target="attendance" onclick="switchTab('attendance', this)"><i class="fa-solid fa-calendar-check"></i> उपस्थिति (Attendance)</button>
-            <button class="tab-btn" data-target="fees" onclick="switchTab('fees', this)"><i class="fa-solid fa-indian-rupee-sign"></i> 60 फीस रिकॉर्ड (Fees)</button>
-            <button class="tab-btn" data-target="transport" onclick="switchTab('transport', this)"><i class="fa-solid fa-bus"></i> बस एवं ट्रांसपोर्ट</button>
-            <button class="tab-btn" data-target="library" onclick="switchTab('library', this)"><i class="fa-solid fa-book"></i> पुस्तकालय (Library)</button>
-            <button class="tab-btn" data-target="timetable" onclick="switchTab('timetable', this)"><i class="fa-solid fa-clock"></i> टाइम टेबल</button>
-            <button class="tab-btn" data-target="notices" onclick="switchTab('notices', this)"><i class="fa-solid fa-bullhorn"></i> नोटिस बोर्ड</button>
-        </div>
-
-        <!-- Main Body Workspace -->
-        <main class="main-content">
-
-            <!-- TAB 1: OVERVIEW -->
-            <div class="tab-pane active" id="pane-overview">
-                <div class="kpi-grid">
-                    <div class="kpi-card">
-                        <div class="kpi-info"><h4>कुल छात्र क्षमता</h4><div class="kpi-value">60 Student Slots</div></div>
-                        <div class="kpi-icon" style="background: linear-gradient(135deg, #0284c7, #38bdf8);"><i class="fa-solid fa-users"></i></div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-info"><h4>कुल शिक्षक क्षमता</h4><div class="kpi-value">60 Faculty Slots</div></div>
-                        <div class="kpi-icon" style="background: linear-gradient(135deg, #d97706, #fbbf24);"><i class="fa-solid fa-user-tie"></i></div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-info"><h4>कुल फीस जमा</h4><div class="kpi-value" id="kpi-fee-collected">₹0</div></div>
-                        <div class="kpi-icon" style="background: linear-gradient(135deg, #db2777, #f472b6);"><i class="fa-solid fa-wallet"></i></div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-info"><h4>सक्रिय बस रूट्स</h4><div class="kpi-value">8 Active Routes</div></div>
-                        <div class="kpi-icon" style="background: linear-gradient(135deg, #eab308, #fef08a); color: #000;"><i class="fa-solid fa-bus"></i></div>
-                    </div>
-                </div>
-
-                <div class="card-table-wrapper" style="padding: 24px;">
-                    <h3><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> एक्टिव स्कूल लाइसेंस जानकारी</h3>
-                    <p style="margin-top: 10px; color: var(--text-muted); line-height: 1.6;">
-                        बधाई हो! आपके विद्यालय <strong><span class="school-name-fill"></span></strong> के लिए ERP सिस्टम सफलता पूर्वक एक्टिवेट कर दिया गया है। 
-                        अब आप 60 छात्रों, 60 शिक्षकों एवं 60 फीस खातों का प्रबंधन आसानी से कर सकते हैं।
-                    </p>
-                </div>
-            </div>
-
-            <!-- TAB 2: STUDENTS (60 Capacity) -->
-            <div class="tab-pane" id="pane-students">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-user-graduate" style="color: #0284c7;"></i> 60 छात्र नामांकन सूची (Student Records)</h3>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-sky" onclick="exportCSV('tableStudents', 'Students_Directory_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel एक्सपोर्ट</button>
-                            <button class="btn btn-dark" onclick="window.print()"><i class="fa-solid fa-print"></i> प्रिंट निकालें</button>
+                    <div style="display: flex; align-items: center; gap: 10px; border-left: 2px solid var(--border-color); padding-left: 15px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #10b981; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800;" id="userAvatar">A</div>
+                        <div>
+                            <div style="font-weight: 800; font-size: 13px;" id="userDisplayName">Admin User</div>
+                            <a href="#" onclick="logoutApp()" style="color: var(--danger); font-size: 11px; text-decoration: none; font-weight: 700;">लॉगआउट</a>
                         </div>
                     </div>
-                    <div class="table-scroll-container">
-                        <table class="custom-table" id="tableStudents">
+                </div>
+            </nav>
+
+            <!-- Main Body Workspace -->
+            <main class="main-content">
+
+                <!-- TAB 1: OVERVIEW -->
+                <div class="tab-pane active" id="pane-overview">
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-info"><h4>कुल छात्र क्षमता</h4><div class="kpi-value">60 Student Slots</div></div>
+                            <div class="kpi-icon" style="background: linear-gradient(135deg, #0284c7, #38bdf8);"><i class="fa-solid fa-users"></i></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-info"><h4>कुल शिक्षक क्षमता</h4><div class="kpi-value">60 Faculty Slots</div></div>
+                            <div class="kpi-icon" style="background: linear-gradient(135deg, #d97706, #fbbf24);"><i class="fa-solid fa-user-tie"></i></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-info"><h4>कुल फीस जमा</h4><div class="kpi-value" id="kpi-fee-collected">₹0</div></div>
+                            <div class="kpi-icon" style="background: linear-gradient(135deg, #db2777, #f472b6);"><i class="fa-solid fa-wallet"></i></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-info"><h4>सक्रिय बस रूट्स</h4><div class="kpi-value">8 Active Routes</div></div>
+                            <div class="kpi-icon" style="background: linear-gradient(135deg, #eab308, #fef08a); color: #000;"><i class="fa-solid fa-bus"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="card-table-wrapper" style="padding: 24px;">
+                        <h3><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> एक्टिव स्कूल लाइसेंस जानकारी</h3>
+                        <p style="margin-top: 10px; color: var(--text-muted); line-height: 1.6;">
+                            विद्यालय <strong><span class="school-name-fill"></span></strong> का ERP सॉफ्टवेयर सक्रिय है। 
+                            आप <b id="lblRoleTitle">ADMIN</b> मोड में लॉगिन हैं। बाईं (Left) तरफ दिए गए मेनू से आप सभी ऑप्शंस का उपयोग कर सकते हैं।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- TAB 2: STUDENTS (60 Capacity) -->
+                <div class="tab-pane" id="pane-students">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-user-graduate" style="color: #0284c7;"></i> 60 छात्र नामांकन सूची (Student Records)</h3>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-sky" onclick="exportCSV('tableStudents', 'Students_Directory_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                                <button class="btn btn-dark" onclick="window.print()"><i class="fa-solid fa-print"></i> प्रिंट</button>
+                            </div>
+                        </div>
+                        <div class="table-scroll-container">
+                            <table class="custom-table" id="tableStudents">
+                                <thead>
+                                    <tr><th>क्र. सं.</th><th>रोल नंबर</th><th>छात्र का नाम (Student Name)</th><th>कक्षा एवं सेक्शन</th></tr>
+                                </thead>
+                                <tbody id="studentBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: TEACHERS (60 Capacity) -->
+                <div class="tab-pane" id="pane-teachers">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-chalkboard-user" style="color: #d97706;"></i> 60 शिक्षक सूची (Teacher Records)</h3>
+                            <button class="btn btn-warning" onclick="exportCSV('tableTeachers', 'Teachers_Roster_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                        </div>
+                        <div class="table-scroll-container">
+                            <table class="custom-table" id="tableTeachers">
+                                <thead>
+                                    <tr><th>क्र. सं.</th><th>शिक्षक ID</th><th>शिक्षक का नाम (Faculty Name)</th><th>आवंटित विषय (Subject)</th></tr>
+                                </thead>
+                                <tbody id="teacherBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: RESULTS (60 Capacity) -->
+                <div class="tab-pane" id="pane-results">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-file-invoice" style="color: #7c3aed;"></i> 60 छात्रों की अंक तालिका</h3>
+                            <button class="btn btn-purple" onclick="exportCSV('tableResults', 'Exam_Results_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                        </div>
+                        <div class="table-scroll-container">
+                            <table class="custom-table" id="tableResults">
+                                <thead>
+                                    <tr><th>क्र. सं.</th><th>छात्र का नाम</th><th>गणित</th><th>विज्ञान</th><th>अंग्रेजी</th><th>ग्रैंड ग्रेड</th></tr>
+                                </thead>
+                                <tbody id="resultBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: ATTENDANCE (12 MONTH CALENDAR VIEW) -->
+                <div class="tab-pane" id="pane-attendance">
+                    <div class="card-table-wrapper" style="padding: 20px; margin-bottom: 20px;">
+                        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                            <div>
+                                <label style="font-weight: 700; font-size: 13px;">छात्र का चयन करें (Select Student): </label>
+                                <select id="attStudentSelector" class="form-control" style="width: 280px; background: #fff; color: #000; display: inline-block; margin-left: 10px;" onchange="render12MonthCalendar()">
+                                    <!-- Options populated via JS -->
+                                </select>
+                            </div>
+                            <div id="attendanceEditNotice" style="color: var(--success); font-weight: 700; font-size: 13px;">
+                                <i class="fa-solid fa-circle-info"></i> शिक्षक / एडमिन: तारीख पर क्लिक करके P (उपस्थित), A (अनुपस्थित), H (छुट्टी) बदलें।
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12 Months Calendar Grid -->
+                    <div class="calendar-grid-12" id="calendarContainer">
+                        <!-- Rendered via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- TAB 6: FEES (60 Capacity) -->
+                <div class="tab-pane" id="pane-fees">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-indian-rupee-sign" style="color: #db2777;"></i> 60 छात्रों का फीस खाता (Fee Ledger)</h3>
+                            <button class="btn btn-primary" onclick="exportCSV('tableFees', 'Fee_Ledger_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                        </div>
+                        <div class="table-scroll-container">
+                            <table class="custom-table" id="tableFees">
+                                <thead>
+                                    <tr><th>क्र. सं.</th><th>छात्र का नाम</th><th>कुल फीस (₹)</th><th>जमा फीस (₹)</th><th>बकाया (₹)</th><th>स्थिति</th></tr>
+                                </thead>
+                                <tbody id="feeBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 7: BUS & TRANSPORT -->
+                <div class="tab-pane" id="pane-transport">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-bus" style="color: #eab308;"></i> स्कूल बस एवं वाहन ट्रैकर (Transport Routes)</h3>
+                        </div>
+                        <table class="custom-table">
                             <thead>
-                                <tr><th>क्र. सं.</th><th>रोल नंबर</th><th>छात्र का नाम (Student Name)</th><th>कक्षा एवं सेक्शन</th></tr>
+                                <tr><th>बस नंबर</th><th>रूट का नाम</th><th>ड्राइवर का नाम एवं फोन</th><th>क्षमता</th></tr>
                             </thead>
-                            <tbody id="studentBody"></tbody>
+                            <tbody>
+                                <tr><td>Bus No. 01</td><td>रूट A (मेन चौराहा - मॉडल टाउन)</td><td>राम सिंह (9876543210)</td><td>40 छात्र</td></tr>
+                                <tr><td>Bus No. 02</td><td>रूट B (सिविल लाइंस - स्टेशन रोड)</td><td>महेश शर्मा (9876543211)</td><td>40 छात्र</td></tr>
+                                <tr><td>Bus No. 03</td><td>रूट C (ग्रीन पार्क - नेहरू नगर)</td><td>सुरेश वर्मा (9876543212)</td><td>40 छात्र</td></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
 
-            <!-- TAB 3: TEACHERS (60 Capacity) -->
-            <div class="tab-pane" id="pane-teachers">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-chalkboard-user" style="color: #d97706;"></i> 60 शिक्षक एवं संकाय (Teacher Records)</h3>
-                        <button class="btn btn-warning" onclick="exportCSV('tableTeachers', 'Teachers_Roster_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel एक्सपोर्ट</button>
-                    </div>
-                    <div class="table-scroll-container">
-                        <table class="custom-table" id="tableTeachers">
+                <!-- TAB 8: LIBRARY -->
+                <div class="tab-pane" id="pane-library">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-book" style="color: #0d9488;"></i> स्कूल पुस्तकालय (Library Register)</h3>
+                        </div>
+                        <table class="custom-table">
                             <thead>
-                                <tr><th>क्र. सं.</th><th>शिक्षक ID</th><th>शिक्षक का नाम (Faculty Name)</th><th>आवंटित विषय (Subject)</th></tr>
+                                <tr><th>पुस्तक ID</th><th>किताब का नाम (Book Title)</th><th>लेखक (Author)</th><th>उपलब्ध प्रतियां</th></tr>
                             </thead>
-                            <tbody id="teacherBody"></tbody>
+                            <tbody>
+                                <tr><td>BK-101</td><td>भौतिक विज्ञान (Class 10)</td><td>डॉ. एच. सी. वर्मा</td><td>15</td></tr>
+                                <tr><td>BK-102</td><td>ऑक्सफोर्ड इंग्लिश डिक्शनरी</td><td>ऑक्सफोर्ड</td><td>10</td></tr>
+                                <tr><td>BK-103</td><td>भारत का इतिहास</td><td>विपिन चंद्र</td><td>08</td></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
 
-            <!-- TAB 4: RESULTS (60 Capacity) -->
-            <div class="tab-pane" id="pane-results">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-file-invoice" style="color: #7c3aed;"></i> 60 छात्रों का परीक्षा अंक तालिका</h3>
-                        <button class="btn btn-purple" onclick="exportCSV('tableResults', 'Exam_Results_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel एक्सपोर्ट</button>
-                    </div>
-                    <div class="table-scroll-container">
-                        <table class="custom-table" id="tableResults">
+                <!-- TAB 9: TIMETABLE -->
+                <div class="tab-pane" id="pane-timetable">
+                    <div class="card-table-wrapper">
+                        <div class="table-header-bar">
+                            <h3><i class="fa-solid fa-clock" style="color: #6366f1;"></i> समय-सारणी (Class Timetable)</h3>
+                        </div>
+                        <table class="custom-table">
                             <thead>
-                                <tr><th>क्र. सं.</th><th>छात्र का नाम</th><th>गणित</th><th>विज्ञान</th><th>अंग्रेजी</th><th>ग्रैंड टोटल ग्रेड</th></tr>
+                                <tr><th>समय (Period)</th><th>सोमवार</th><th>मंगलवार</th><th>बुधवार</th><th>गुरुवार</th><th>शुक्रवार</th></tr>
                             </thead>
-                            <tbody id="resultBody"></tbody>
+                            <tbody>
+                                <tr><td>09:00 AM - 09:45 AM</td><td>गणित</td><td>विज्ञान</td><td>अंग्रेजी</td><td>गणित</td><td>हिंदी</td></tr>
+                                <tr><td>09:45 AM - 10:30 AM</td><td>विज्ञान</td><td>गणित</td><td>कंप्यूटर</td><td>अंग्रेजी</td><td>विज्ञान</td></tr>
+                                <tr><td>10:30 AM - 11:15 AM</td><td>कंप्यूटर</td><td>हिंदी</td><td>सामाजिक विज्ञान</td><td>विज्ञान</td><td>गणित</td></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
 
-            <!-- TAB 5: ATTENDANCE (60 Capacity) -->
-            <div class="tab-pane" id="pane-attendance">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-calendar-check" style="color: #059669;"></i> 60 छात्रों की उपस्थिति ट्रैकर</h3>
-                        <button class="btn btn-success" onclick="exportCSV('tableAttendance', 'Attendance_Report_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel एक्सपोर्ट</button>
-                    </div>
-                    <div class="table-scroll-container">
-                        <table class="custom-table" id="tableAttendance">
-                            <thead>
-                                <tr><th>क्र. सं.</th><th>छात्र का नाम</th><th>कुल दिन</th><th>उपस्थित दिन</th><th>उपस्थिति % एवं स्थिति</th></tr>
-                            </thead>
-                            <tbody id="attendanceBody"></tbody>
-                        </table>
+                <!-- TAB 10: NOTICES -->
+                <div class="tab-pane" id="pane-notices">
+                    <div class="notice-grid">
+                        <div class="notice-card">
+                            <h4 style="color: var(--danger);"><i class="fa-solid fa-bullhorn"></i> मुख्य सूचना (Urgent)</h4>
+                            <textarea id="notice1" class="persist-field" placeholder="सूचना दर्ज करें..."></textarea>
+                        </div>
+                        <div class="notice-card">
+                            <h4 style="color: var(--purple);"><i class="fa-solid fa-calendar-day"></i> आगामी कार्यक्रम</h4>
+                            <textarea id="notice2" class="persist-field" placeholder="कार्यक्रम विवरण लिखें..."></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- TAB 6: FEES (60 Capacity) -->
-            <div class="tab-pane" id="pane-fees">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-indian-rupee-sign" style="color: #db2777;"></i> 60 छात्रों का फीस खाता (Fee Ledger)</h3>
-                        <button class="btn btn-primary" onclick="exportCSV('tableFees', 'Fee_Ledger_60.csv')"><i class="fa-solid fa-file-excel"></i> Excel एक्सपोर्ट</button>
-                    </div>
-                    <div class="table-scroll-container">
-                        <table class="custom-table" id="tableFees">
-                            <thead>
-                                <tr><th>क्र. सं.</th><th>छात्र का नाम</th><th>कुल फीस (₹)</th><th>जमा फीस (₹)</th><th>बकाया (₹)</th><th>फीस स्थिति</th></tr>
-                            </thead>
-                            <tbody id="feeBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 7: BUS & TRANSPORT (NEW OPTION) -->
-            <div class="tab-pane" id="pane-transport">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-bus" style="color: #eab308;"></i> स्कूल बस एवं वाहन ट्रैकर (Transport Routes)</h3>
-                    </div>
-                    <table class="custom-table">
-                        <thead>
-                            <tr><th>बस नंबर</th><th>रूट का नाम</th><th>ड्राइवर का नाम एवं फोन</th><th>कुल छात्र क्षमता</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Bus No. 01</td><td>रूट A (मेन चौराहा - मॉडल टाउन)</td><td>राम सिंह (9876543210)</td><td>40 छात्र</td></tr>
-                            <tr><td>Bus No. 02</td><td>रूट B (सिविल लाइंस - स्टेशन रोड)</td><td>महेश शर्मा (9876543211)</td><td>40 छात्र</td></tr>
-                            <tr><td>Bus No. 03</td><td>रूट C (ग्रीन पार्क - नेहरू नगर)</td><td>सुरेश वर्मा (9876543212)</td><td>40 छात्र</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- TAB 8: LIBRARY (NEW OPTION) -->
-            <div class="tab-pane" id="pane-library">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-book" style="color: #0d9488;"></i> स्कूल पुस्तकालय (Library Book Register)</h3>
-                    </div>
-                    <table class="custom-table">
-                        <thead>
-                            <tr><th>पुस्तक ID</th><th>किताब का नाम (Book Title)</th><th>लेखक (Author)</th><th>उपलब्ध प्रतियां</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>BK-101</td><td>भौतिक विज्ञान (NCERT Class 10)</td><td>डॉ. एच. सी. वर्मा</td><td>15</td></tr>
-                            <tr><td>BK-102</td><td>ऑक्सफोर्ड इंग्लिश डिक्शनरी</td><td>ऑक्सफोर्ड</td><td>10</td></tr>
-                            <tr><td>BK-103</td><td>भारत का इतिहास</td><td>विपिन चंद्र</td><td>08</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- TAB 9: TIMETABLE (NEW OPTION) -->
-            <div class="tab-pane" id="pane-timetable">
-                <div class="card-table-wrapper">
-                    <div class="table-header-bar">
-                        <h3><i class="fa-solid fa-clock" style="color: #6366f1;"></i> दैनिक समय-सारणी (Class Timetable)</h3>
-                    </div>
-                    <table class="custom-table">
-                        <thead>
-                            <tr><th>समय (Period)</th><th>सोमवार</th><th>मंगलवार</th><th>बुधवार</th><th>गुरुवार</th><th>शुक्रवार</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>09:00 AM - 09:45 AM</td><td>गणित</td><td>विज्ञान</td><td>अंग्रेजी</td><td>गणित</td><td>हिंदी</td></tr>
-                            <tr><td>09:45 AM - 10:30 AM</td><td>विज्ञान</td><td>गणित</td><td>कंप्यूटर</td><td>अंग्रेजी</td><td>विज्ञान</td></tr>
-                            <tr><td>10:30 AM - 11:15 AM</td><td>कंप्यूटर</td><td>हिंदी</td><td>सामाजिक विज्ञान</td><td>विज्ञान</td><td>गणित</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- TAB 10: NOTICES -->
-            <div class="tab-pane" id="pane-notices">
-                <div class="notice-grid">
-                    <div class="notice-card">
-                        <h4 style="color: var(--danger);"><i class="fa-solid fa-bullhorn"></i> मुख्य सूचना (Urgent)</h4>
-                        <textarea id="notice1" class="persist-field" placeholder="सूचना यहाँ दर्ज करें..."></textarea>
-                    </div>
-                    <div class="notice-card">
-                        <h4 style="color: var(--purple);"><i class="fa-solid fa-calendar-day"></i> आगामी कार्यक्रम</h4>
-                        <textarea id="notice2" class="persist-field" placeholder="कार्यक्रम विवरण यहाँ लिखें..."></textarea>
-                    </div>
-                </div>
-            </div>
-
-        </main>
+            </main>
+        </div>
     </div>
 
-    <!-- ================= 5. SCRIPT & LOGIC ENGINE ================= -->
+    <!-- ================= 5. SCRIPT ENGINE ================= -->
     <script>
+        let currentUserRole = 'admin';
         let currentSelectedPlanAmount = 999;
+
+        // Auth Form Switcher
+        function toggleAuth(type) {
+            document.getElementById('formLogin').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('formRegister').style.display = type === 'register' ? 'block' : 'none';
+        }
+
+        function processRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            alert(`बधाई हो ${name}! आपका रजिस्ट्रेशन सफल रहा। अब लॉगिन करें।`);
+            toggleAuth('login');
+        }
 
         // Login Logic
         function processLogin(e) {
             e.preventDefault();
+            currentUserRole = document.getElementById('loginRole').value;
             const u = document.getElementById('loginUser').value;
-            const p = document.getElementById('loginPass').value;
 
-            if (u && p) {
-                document.getElementById('screenLogin').style.display = 'none';
-                
-                // Check if already paid and setup done
-                const savedSchoolName = localStorage.getItem('erp_school_name');
-                if (savedSchoolName) {
-                    launchDashboard(savedSchoolName, localStorage.getItem('erp_school_tag'));
-                } else {
-                    document.getElementById('screenPayment').style.display = 'flex';
-                }
+            document.getElementById('screenAuth').style.display = 'none';
+
+            const savedSchoolName = localStorage.getItem('erp_school_name');
+            if (savedSchoolName) {
+                launchDashboard(savedSchoolName, localStorage.getItem('erp_school_tag'), u);
+            } else {
+                document.getElementById('screenPayment').style.display = 'flex';
             }
         }
 
-        // Subscription Logic
         function selectPlan(planId, price) {
             document.querySelectorAll('.price-card').forEach(c => c.classList.remove('selected'));
             document.getElementById(planId).classList.add('selected');
@@ -713,12 +670,11 @@
         }
 
         function processPayment() {
-            alert(`₹${currentSelectedPlanAmount} का भुगतान सफल रहा! कृपया अपने स्कूल का नाम सेटअप करें।`);
+            alert(`₹${currentSelectedPlanAmount} का भुगतान सफल रहा! कृपया स्कूल की जानकारी दर्ज करें।`);
             document.getElementById('screenPayment').style.display = 'none';
             document.getElementById('screenSetup').style.display = 'flex';
         }
 
-        // School Setup Logic
         function saveSchoolSetup(e) {
             e.preventDefault();
             const name = document.getElementById('setupSchoolName').value.trim();
@@ -728,40 +684,65 @@
                 localStorage.setItem('erp_school_name', name);
                 localStorage.setItem('erp_school_tag', tag);
                 document.getElementById('screenSetup').style.display = 'none';
-                launchDashboard(name, tag);
+                launchDashboard(name, tag, document.getElementById('loginUser').value);
             }
         }
 
-        // Launch Main Dashboard
-        function launchDashboard(name, tag) {
+        // Launch Dashboard & Set Role Access
+        function launchDashboard(name, tag, username) {
             document.getElementById('appDashboard').style.display = 'flex';
             document.getElementById('displaySchoolName').innerText = name;
-            document.getElementById('displaySchoolTag').innerHTML = `<i class="fa-solid fa-circle" style="color: #10b981; font-size: 8px;"></i> ${tag || 'Smart ERP'}`;
-            
+            document.getElementById('displayUserRole').innerText = `${currentUserRole} MODE`;
+            document.getElementById('userDisplayName').innerText = username || 'User';
+            document.getElementById('userAvatar').innerText = (username || 'A').charAt(0).toUpperCase();
+            document.getElementById('lblRoleTitle').innerText = currentUserRole.toUpperCase();
+
             document.querySelectorAll('.school-name-fill').forEach(el => el.innerText = name);
+
+            applyPermissions();
             generate60Records();
+            populateStudentSelector();
+            render12MonthCalendar();
+        }
+
+        // Apply Role Access
+        function applyPermissions() {
+            document.querySelectorAll('.menu-item-role').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.admin-only-btn').forEach(el => el.style.display = 'none');
+
+            if (currentUserRole === 'admin') {
+                document.querySelectorAll('.admin-item').forEach(el => el.style.display = 'block');
+                document.querySelectorAll('.admin-only-btn').forEach(el => el.style.display = 'inline-flex');
+                document.getElementById('attendanceEditNotice').style.display = 'block';
+            } else if (currentUserRole === 'teacher') {
+                document.querySelectorAll('.teacher-item').forEach(el => el.style.display = 'block');
+                document.getElementById('attendanceEditNotice').style.display = 'block';
+            } else if (currentUserRole === 'student') {
+                document.querySelectorAll('.student-item').forEach(el => el.style.display = 'block');
+                document.getElementById('attendanceEditNotice').style.display = 'none';
+            }
         }
 
         function logoutApp() {
             document.getElementById('appDashboard').style.display = 'none';
-            document.getElementById('screenLogin').style.display = 'flex';
+            document.getElementById('screenAuth').style.display = 'flex';
         }
 
-        // Generate 60 Students, Teachers, Results, Attendance & Fee Rows
+        // Generate All 60 Records (Students, Teachers, Results, Fees)
         function generate60Records() {
             const count = 60;
-
             const stBody = document.getElementById('studentBody');
             const tcBody = document.getElementById('teacherBody');
             const resBody = document.getElementById('resultBody');
-            const attBody = document.getElementById('attendanceBody');
             const feeBody = document.getElementById('feeBody');
 
-            if (stBody.children.length > 0) return; // Prevent duplicate injection
+            if (stBody.children.length > 0) return; // Prevent duplicate generation
 
             const baseNames = ["आदित्य", "राहुल", "प्रिया", "अंजलि", "विकास", "पूजा", "अमित", "नेहा", "संजय", "रोहन"];
-            const baseSurnames = ["शर्मा", "वर्मा", "गुप्ता", "सिंह", "यादव", "चौधरी", "मिश्रा", "जोशी", "राजपूत", "सक्सेना"];
+            const baseSurnames = ["शर्मा", "वर्मा", "गु Gupta", "सिंह", "यादव", "चौधरी", "मिश्रा", "जोशी", "राजपूत", "सक्सेना"];
             const subjectsList = ["गणित", "विज्ञान", "अंग्रेजी", "हिंदी", "कंप्यूटर", "सामाजिक विज्ञान"];
+
+            const isReadOnly = (currentUserRole === 'student') ? 'readonly' : '';
 
             for (let i = 1; i <= count; i++) {
                 const randomName = `${baseNames[i % baseNames.length]} ${baseSurnames[i % baseSurnames.length]} (${i})`;
@@ -771,61 +752,48 @@
                 stBody.innerHTML += `
                     <tr>
                         <td><b>${i}</b></td>
-                        <td><input type="text" id="st_roll_${i}" class="table-input persist-field" value="ROLL-2026-${100+i}"></td>
-                        <td><input type="text" id="st_name_${i}" class="table-input persist-field" value="${randomName}"></td>
-                        <td><input type="text" id="st_class_${i}" class="table-input persist-field" value="Class ${1 + (i % 12)}-${i % 2 === 0 ? 'A' : 'B'}"></td>
+                        <td><input type="text" id="st_roll_${i}" class="table-input persist-field" value="ROLL-2026-${100+i}" ${isReadOnly}></td>
+                        <td><input type="text" id="st_name_${i}" class="table-input persist-field" value="${randomName}" ${isReadOnly}></td>
+                        <td><input type="text" id="st_class_${i}" class="table-input persist-field" value="Class ${1 + (i % 12)}-${i % 2 === 0 ? 'A' : 'B'}" ${isReadOnly}></td>
                     </tr>`;
 
                 // 2. 60 Teachers
                 tcBody.innerHTML += `
                     <tr>
                         <td><b>${i}</b></td>
-                        <td><input type="text" id="tc_id_${i}" class="table-input persist-field" value="TCH-50${i}"></td>
-                        <td><input type="text" id="tc_name_${i}" class="table-input persist-field" value="${randomTeacher}"></td>
-                        <td><input type="text" id="tc_sub_${i}" class="table-input persist-field" value="${subjectsList[i % subjectsList.length]}"></td>
+                        <td><input type="text" id="tc_id_${i}" class="table-input persist-field" value="TCH-50${i}" ${isReadOnly}></td>
+                        <td><input type="text" id="tc_name_${i}" class="table-input persist-field" value="${randomTeacher}" ${isReadOnly}></td>
+                        <td><input type="text" id="tc_sub_${i}" class="table-input persist-field" value="${subjectsList[i % subjectsList.length]}" ${isReadOnly}></td>
                     </tr>`;
 
                 // 3. 60 Exam Results
                 resBody.innerHTML += `
                     <tr>
                         <td><b>${i}</b></td>
-                        <td><input type="text" id="res_name_${i}" class="table-input persist-field" value="${randomName}"></td>
-                        <td><input type="number" id="m_${i}" class="table-input persist-field" value="${50 + (i % 50)}" oninput="calcGrade(${i})"></td>
-                        <td><input type="number" id="s_${i}" class="table-input persist-field" value="${55 + (i % 45)}" oninput="calcGrade(${i})"></td>
-                        <td><input type="number" id="e_${i}" class="table-input persist-field" value="${60 + (i % 40)}" oninput="calcGrade(${i})"></td>
+                        <td><input type="text" id="res_name_${i}" class="table-input persist-field" value="${randomName}" readonly></td>
+                        <td><input type="number" id="m_${i}" class="table-input persist-field" value="${50 + (i % 50)}" oninput="calcGrade(${i})" ${isReadOnly}></td>
+                        <td><input type="number" id="s_${i}" class="table-input persist-field" value="${55 + (i % 45)}" oninput="calcGrade(${i})" ${isReadOnly}></td>
+                        <td><input type="number" id="e_${i}" class="table-input persist-field" value="${60 + (i % 40)}" oninput="calcGrade(${i})" ${isReadOnly}></td>
                         <td><input type="text" id="g_${i}" class="table-input persist-field" readonly></td>
                     </tr>`;
 
-                // 4. 60 Attendance Records
-                attBody.innerHTML += `
-                    <tr>
-                        <td><b>${i}</b></td>
-                        <td><input type="text" id="att_name_${i}" class="table-input persist-field" value="${randomName}"></td>
-                        <td><input type="number" id="att_tot_${i}" class="table-input persist-field" value="200" oninput="calcAtt(${i})"></td>
-                        <td><input type="number" id="att_pres_${i}" class="table-input persist-field" value="${140 + (i % 60)}" oninput="calcAtt(${i})"></td>
-                        <td><input type="text" id="att_rem_${i}" class="table-input persist-field" readonly></td>
-                    </tr>`;
-
-                // 5. 60 Fees Records
+                // 4. 60 Fees Records
                 feeBody.innerHTML += `
                     <tr>
                         <td><b>${i}</b></td>
-                        <td><input type="text" id="fee_name_${i}" class="table-input persist-field" value="${randomName}"></td>
-                        <td><input type="number" id="fee_tot_${i}" class="table-input persist-field" value="25000" oninput="calcFee(${i})"></td>
-                        <td><input type="number" id="fee_paid_${i}" class="table-input persist-field" value="${15000 + ((i*300)%10000)}" oninput="calcFee(${i})"></td>
+                        <td><input type="text" id="fee_name_${i}" class="table-input persist-field" value="${randomName}" readonly></td>
+                        <td><input type="number" id="fee_tot_${i}" class="table-input persist-field" value="25000" oninput="calcFee(${i})" ${isReadOnly}></td>
+                        <td><input type="number" id="fee_paid_${i}" class="table-input persist-field" value="${15000 + ((i*300)%10000)}" oninput="calcFee(${i})" ${isReadOnly}></td>
                         <td><input type="number" id="fee_due_${i}" class="table-input persist-field" readonly></td>
                         <td><input type="text" id="fee_stat_${i}" class="table-input persist-field" readonly></td>
                     </tr>`;
             }
 
-            // Calculations for all 60 rows
             for (let i = 1; i <= count; i++) {
-                calcAtt(i);
                 calcGrade(i);
                 calcFee(i);
             }
 
-            // Dynamic Local Storage Save Listener
             document.querySelectorAll('.persist-field').forEach(field => {
                 field.addEventListener('input', saveStateData);
             });
@@ -833,33 +801,76 @@
             loadStateData();
         }
 
-        // Dynamic Tab Switcher
-        function switchTab(targetId, btnEl) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        // Populate Attendance Student Dropdown
+        function populateStudentSelector() {
+            const selector = document.getElementById('attStudentSelector');
+            selector.innerHTML = '';
+            for (let i = 1; i <= 60; i++) {
+                const nameEl = document.getElementById(`st_name_${i}`);
+                const nameVal = nameEl ? nameEl.value : `Student ${i}`;
+                selector.innerHTML += `<option value="${i}">${i}. ${nameVal}</option>`;
+            }
+        }
+
+        // 12 Month Attendance Calendar Generator
+        function render12MonthCalendar() {
+            const months = ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"];
+            const container = document.getElementById('calendarContainer');
+            container.innerHTML = '';
+
+            months.forEach((m) => {
+                let daysHtml = '';
+                for (let d = 1; d <= 30; d++) {
+                    let statusClass = (d % 7 === 0) ? 'absent' : (d % 5 === 0 ? 'holiday' : 'present');
+                    let statusText = statusClass === 'present' ? 'P' : (statusClass === 'absent' ? 'A' : 'H');
+                    
+                    let clickAttr = (currentUserRole === 'student') ? '' : `onclick="toggleDayStatus(this)"`;
+                    daysHtml += `<div class="day-cell ${statusClass}" ${clickAttr}>${d}<br><sub>${statusText}</sub></div>`;
+                }
+
+                container.innerHTML += `
+                    <div class="month-card">
+                        <div class="month-title">${m} 2026</div>
+                        <div class="days-grid">
+                            <div class="day-header">S</div><div class="day-header">M</div><div class="day-header">T</div>
+                            <div class="day-header">W</div><div class="day-header">T</div><div class="day-header">F</div><div class="day-header">S</div>
+                            ${daysHtml}
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function toggleDayStatus(cell) {
+            if (currentUserRole === 'student') return;
+            if (cell.classList.contains('present')) {
+                cell.className = 'day-cell absent';
+                cell.querySelector('sub').innerText = 'A';
+            } else if (cell.classList.contains('absent')) {
+                cell.className = 'day-cell holiday';
+                cell.querySelector('sub').innerText = 'H';
+            } else {
+                cell.className = 'day-cell present';
+                cell.querySelector('sub').innerText = 'P';
+            }
+        }
+
+        // Left Sidebar Switcher
+        function switchTab(targetId, navEl) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
 
-            btnEl.classList.add('active');
+            if (navEl) navEl.classList.add('active');
             document.getElementById(`pane-${targetId}`).classList.add('active');
             filterActiveTable();
         }
 
-        // Calculations Engine
-        function calcAtt(i) {
-            const tot = parseFloat(document.getElementById(`att_tot_${i}`).value) || 0;
-            const pres = parseFloat(document.getElementById(`att_pres_${i}`).value) || 0;
-            const rem = document.getElementById(`att_rem_${i}`);
-
-            if (tot > 0) {
-                const pct = Math.round((pres / tot) * 100);
-                rem.value = `${pct}% (${pct >= 75 ? 'उत्कृष्ट' : 'कम उपस्थिति'})`;
-            }
-        }
-
+        // Calculation Functions
         function calcGrade(i) {
-            const m = parseFloat(document.getElementById(`m_${i}`).value) || 0;
-            const s = parseFloat(document.getElementById(`s_${i}`).value) || 0;
-            const e = parseFloat(document.getElementById(`e_${i}`).value) || 0;
+            const m = parseFloat(document.getElementById(`m_${i}`)?.value) || 0;
+            const s = parseFloat(document.getElementById(`s_${i}`)?.value) || 0;
+            const e = parseFloat(document.getElementById(`e_${i}`)?.value) || 0;
             const g = document.getElementById(`g_${i}`);
+            if (!g) return;
 
             const avg = (m + s + e) / 3;
             if (avg >= 90) g.value = "A+";
@@ -870,10 +881,11 @@
         }
 
         function calcFee(i) {
-            const tot = parseFloat(document.getElementById(`fee_tot_${i}`).value) || 0;
-            const paid = parseFloat(document.getElementById(`fee_paid_${i}`).value) || 0;
+            const tot = parseFloat(document.getElementById(`fee_tot_${i}`)?.value) || 0;
+            const paid = parseFloat(document.getElementById(`fee_paid_${i}`)?.value) || 0;
             const dueEl = document.getElementById(`fee_due_${i}`);
             const statEl = document.getElementById(`fee_stat_${i}`);
+            if (!dueEl || !statEl) return;
 
             const due = tot - paid;
             dueEl.value = due > 0 ? due : 0;
@@ -890,10 +902,11 @@
             for (let i = 1; i <= 60; i++) {
                 totalCollected += parseFloat(document.getElementById(`fee_paid_${i}`)?.value) || 0;
             }
-            document.getElementById('kpi-fee-collected').innerText = `₹${totalCollected.toLocaleString('en-IN')}`;
+            const kpiEl = document.getElementById('kpi-fee-collected');
+            if (kpiEl) kpiEl.innerText = `₹${totalCollected.toLocaleString('en-IN')}`;
         }
 
-        // Global Search
+        // Search Filter
         function filterActiveTable() {
             const q = document.getElementById('globalSearchInput').value.toLowerCase().trim();
             const activePane = document.querySelector('.tab-pane.active');
@@ -910,7 +923,7 @@
             });
         }
 
-        // CSV Export Engine
+        // Export to CSV
         function exportCSV(tableId, filename) {
             const table = document.getElementById(tableId);
             if (!table) return;
@@ -940,7 +953,7 @@
             a.click();
         }
 
-        // Persistence in Local Storage
+        // Save & Load State Data
         function saveStateData() {
             const data = {};
             document.querySelectorAll('.persist-field').forEach(el => {
@@ -960,7 +973,6 @@
             });
 
             for (let i = 1; i <= 60; i++) {
-                calcAtt(i);
                 calcGrade(i);
                 calcFee(i);
             }
@@ -975,4 +987,3 @@
     </script>
 </body>
 </html>
-
